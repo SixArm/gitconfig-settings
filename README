@@ -28,6 +28,15 @@ tracking branches with "fetch" and then "merge".
   git config --global branch.autosetupmerge true
 
 
+!! Suggested
+
+When we install Git, we can also install git tab completion settings.
+
+To install git tab completion, we go to the git soure code directory then run:
+
+  echo "source ./contrib/completion/git-completion.bash" >> /etc/bash.bashrc
+
+
 !! Git Guis
 
 Read http://git.or.cz/gitwiki/InterfacesFrontendsAndTools
