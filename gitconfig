@@ -1,6 +1,6 @@
 [user]
-  email = sixarm@sixarm.com
-  name = SixArm
+	email = sixarm@sixarm.com
+	name = SixArm
 [github]
   user = sixarm
   token = sixarm-token
@@ -126,7 +126,7 @@
   panic = !tar cvf ../git_panic.tar *
 
   # Do everything we can to synchronize all changes
-  get = !git pull && git submodule update --init --recurvsive
+  get = !git pull && git submodule update --init --recursive
   put = !git commit -am "$1" && git push
 
   # Undo aliases
