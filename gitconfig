@@ -132,6 +132,7 @@
   # Undo aliases
   undo = reset --hard
   uncommit = !git reset --soft HEAD^
+  unadd = !git reset HEAD
   unstage = !git reset HEAD
 
   # Editing and adding conflicted files: when we get many merge conflicts
