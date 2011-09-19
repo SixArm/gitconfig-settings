@@ -1,9 +1,11 @@
 [user]
-	email = sixarm@sixarm.com
-	name = SixArm
+  email = sixarm@sixarm.com
+  name = SixArm
+
 [github]
   user = sixarm
   token = sixarm-token
+
 [alias]
 
   # For help on git aliases and credit for these here, see these resources:
