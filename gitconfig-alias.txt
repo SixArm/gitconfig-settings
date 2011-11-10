@@ -124,7 +124,8 @@
   put = !git commit -am "$1" && git push
 
   # Undo aliases
-  undo = reset --hard
+  undo = !git reset --hard
+  undoclean = !git reset --hard && git clean -fd
   uncommit = !git reset --soft HEAD^
   unadd = !git reset HEAD
   unstage = !git reset HEAD
