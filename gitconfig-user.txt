@@ -1,0 +1,3 @@
+[user]
+  email = sixarm@sixarm.com
+  name = SixArm

@@ -1,0 +1,24 @@
+[apply]
+  whitespace = nowarn
+
+[branch]
+  autosetupmerge = true
+
+[branch "master"]
+  merge = refs/heads/master
+  remote = origin
+
+[core]
+  excludesfile = ~/.gitignore
+  pager = most
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+
+[diff]
+  renamelimit = 0
+  renames = copy # makes the diff much shorter when moving or copying files
+
+[push]
+  default = matching
+
+[rerere]
+  enabled = true
