@@ -96,6 +96,9 @@
   # Show log as a graph
   log-graph = log --graph --oneline --decorate
 
+  # Show the date of the first commit
+  log-first-date = !"git log --date-order --date=iso --pretty=\"format:%ad\" --reverse | head -1"
+
   ### LOOKUP ALIASES ###
 
   # whois: given a string for an author, try to figure out full name and email:
