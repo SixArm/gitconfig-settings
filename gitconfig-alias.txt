@@ -97,7 +97,7 @@
   log-graph = log --graph --oneline --decorate
 
   # Show the date of the first commit
-  log-first-date = !"git log --date-order --date=iso --pretty=\"format:%ad\" --reverse | head -1"
+  log-first-date = !"git log --date-order --date=iso --pretty=%ad --reverse | head -1"
 
   ### LOOKUP ALIASES ###
 
