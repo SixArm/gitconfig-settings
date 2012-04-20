@@ -18,31 +18,28 @@ Customize the gitconfig file section for GitHub, if you use it:
       token = sixarm-token
 
 
-## Recommended
+## Recommended: branch auto setup merge
 
-Tell git-branch and git-checkout to setup new branches so that git-pull
-will appropriately merge from that remote branch. Without this, you will 
-have to add --track to your branch command or manually merge remote
-tracking branches with "fetch" and then "merge".
+We tell git-branch and git-checkout to setup new branches so that git-pull
+will appropriately merge from that remote branch. (If we didn't do this, we 
+would have to add --track to our branch command or manually merge remote
+tracking branches with "fetch" and then "merge".)
 
-  git config --global branch.autosetupmerge true
+    git config --global branch.autosetupmerge true
 
 
-## Suggested
+## Suggested: tab completion
 
 When we install Git, we can also install git tab completion settings.
 
 To install git tab completion, we go to the git soure code directory then run:
 
-  echo "source ./contrib/completion/git-completion.bash" >> /etc/bash.bashrc
+    echo "source ./contrib/completion/git-completion.bash" >> /etc/bash.bashrc
 
 
 ## Git GUI apps
 
 Read http://git.or.cz/gitwiki/InterfacesFrontendsAndTools
 
-Best is http://cola.tuxfamily.org/
+Our favorite open source free GUI for Ubuntu is http://cola.tuxfamily.org/
 
-download http://cola.tuxfamily.org/releases/
-
-make prefix=/usr install
