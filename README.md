@@ -1,4 +1,4 @@
-# SixArm.com » Git » gitconfig settings for user, alias, color, branch, etc. 
+# SixArm.com » Git » gitconfig for user, alias, color, branch, etc. 
 
 Git configruation settings for our git users, command aliases, 
 syntax coloring, branch management, and merge strategies.
