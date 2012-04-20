@@ -1,0 +1,6 @@
+[include]
+    path = gitconfig-alias.txt
+    path = gitconfig-basics.txt
+    path = gitconfig-color.txt
+    path = gitconfig-github.txt
+    path = gitconfig-user.txt
