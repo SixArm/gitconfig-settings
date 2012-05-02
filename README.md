@@ -13,7 +13,7 @@ Get these files:
 To include all these files, add this to the top of your <code>~/.gitconfig</code>
 
     [include]
-       path = sixarm_git_gitconfig/gitconfig-aliases.txt
+       path = sixarm_git_gitconfig/gitconfig-alias.txt
        path = sixarm_git_gitconfig/gitconfig-basics.txt
        path = sixarm_git_gitconfig/gitconfig-color.txt
        path = sixarm_git_gitconfig/gitconfig-github.txt
