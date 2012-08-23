@@ -6,56 +6,149 @@
   # http://superuser.com/questions/169695/what-are-your-favorite-git-aliases
   # http://stackoverflow.com/questions/1309430/how-to-embed-bash-script-directly-inside-a-git-alias
 
-  # Simplest aliases
+  ##
+  # One-letter aliases
+  ##
+
+  # add - record file contents to the index.
   a = add
+
+  # branch - list, create, or delete branches
   b = branch
+
+  # commit - record changes to the repostiory with a message.
   c = commit -m
+
+  # diff - show changes between commits, commit and working tree, etc.
   d = diff
-  e = !git diff $1 | edit
+
+  # edit - pipe the diff output to your editor of choice.
+  e = !git diff | $EDITOR
+
+  # fetch - download objects and refs from another repository.
   f = fetch
+
+  # grep - print lines matching a pattern.
   g = grep
+
+  # log - show commit logs.
   l = log
+
+  # merge - join two or more development histories together.
   m = merge
+
+  # checkout - update the working tree to match a branch or paths.
   o = checkout
+
+  # pull - fetch from and merge with another repository or a local branch.  
   p = pull
+
+  # remote - manage set of tracked repositories.
   r = remote
+
+  # status - show the working tree differences 
   s = status
+
+  # whatchanged - show logs with the differences introduced by each commit.
   w = whatchanged
 
-  # Simple fairly frequent aliases.
+  ##
+  # Simple fairly-frequent aliases.
   # Some of these duplicate the aliases above,
   # which is intentional because this lets our
   # developers use whichever alias they prefer.
-  au = add -u .
+  ##
+
+  # add just the files in the local directory that are updated
+  au = add --update .
+
+  # branch - list, create, or delete branches [same as "b"]
   br = branch
+
+  # branch and only list branches whose tips are reachable from the specified commit (HEAD if not specified).
   brm = branch --merged
+
+  # branch and only list branches whose tips are not reachable from the specified commit (HEAD if not specified).
   brnm = branch --no-merged
+
+  # commit and rather than creating a new commit, amend the tip of the current branch. 
   ca = commit --amend 
+ 
+  # commit with --verbose and with the given <msg> as the commit message.
   ci = commit -v -m
+
+  # checkout - update the working tree to match a branch or paths. [same as "o" for "out"]
   co = checkout
+
+  # cherry-pick - apply the changes introduced by some existing commits.    
   cp = cherry-pick
+
+  # cherry-pick without making a commit, and when when recording the commit, append a line that says "(cherry picked from commit ...)"
   cp-nx = cherry-pick --no-commit -x
-  di = diff
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-  lgtopo = log --graph --pretty=format:'%h : %s' --topo-order 
-  lp = log -p
+
+  # diff - show changes between commits, commit and working tree, etc. [same as "d"]
+  di = diff 
+
+  # log with a text-based graphical representation of the commit history.
+  lg = log --graph
+
+  # log with patch generation.
+  lp = log --patch
+
+  # log with items appearing in topological order, i.e. descendant commits are shown before their parents.
   lt = log --topo-order
+
+  # log with lovely output: a graph, colors, one-line commit messages, human-friendly dates relative to the current time.
+  ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+
+  # ls-files - show information about files in the index and the working tree; like Unix "ls" command.
   ls = ls-files
+
+  # merge but without autocommit, and with a commit even if the merge resolved as a fast-forward.
   me = merge --no-commit --no-ff
+
+  # rebase - forward-port local commits to the updated upstream head.
   rb = rebase
+
+  # rebase - continue the rebasing process after resolving a conflict manually and updating the index with the resolution.
   rbc = rebase --continue
+
+  # rebase - restart the rebasing process by skipping the current patch.
   rbs = rebase --skip
+
+  # reflog - reference log that manages when tips of branches are updated. 
   rl = reflog
+
+  # remote - manage set of tracked repositories [same as "r"].
   rr = remote
+
+  # remote show - gives some information about the remote <name>.
   rrs = remote show
+
+  # remote update - fetch updates for a named set of remotes in the repository as defined by remotes.
   rru = remote update
+
+  # remote prune - deletes all stale remote-tracking branches under <name>.
   rrp = remote prune
+
+  # revert - undo the changes from some existing commits
   rv = revert
+
+  # revert without autocommit; useful when you're reverting more than one commits' effect to your index in a row.
   rvnc = revert --no-commit
+
+  # show-branch - print a list of branches and their commits.
   sb = show-branch
+
+  # submodule - enables foreign repositories to be embedded within a dedicated subdirectory of the source tree.
   sm = submodule
+
+  # submodule with initialize, update, and recursive; this is useful to bring a submodule fully up to date.
   smu = submodule update --init --recursive 
+
+  # status - show the working tree differences [same as "s"]  
   st = status
+
 
   ### INSPECTION ALIASES ###
 
