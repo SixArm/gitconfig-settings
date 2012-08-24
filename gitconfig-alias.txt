@@ -13,7 +13,7 @@
   # add - record file contents to the index.
   a = add
 
-  # branch - list, create, or delete branches
+  # branch - list, create, or delete branches.
   b = branch
 
   # commit - record changes to the repostiory with a message.
@@ -37,7 +37,7 @@
   # merge - join two or more development histories together.
   m = merge
 
-  # checkout - update the working tree to match a branch or paths.
+  # checkout - update the working tree to match a branch or paths; we use "o" to mean "out".
   o = checkout
 
   # pull - fetch from and merge with another repository or a local branch.  
@@ -71,7 +71,7 @@
   # branch and only list branches whose tips are not reachable from the specified commit (HEAD if not specified).
   brnm = branch --no-merged
 
-  # commit and rather than creating a new commit, amend the tip of the current branch. 
+  # commit - amend the tip of the current branch rather than creating a new commit.
   ca = commit --amend 
  
   # commit with --verbose and with the given <msg> as the commit message.
@@ -80,7 +80,7 @@
   # checkout - update the working tree to match a branch or paths. [same as "o" for "out"]
   co = checkout
 
-  # cherry-pick - apply the changes introduced by some existing commits.    
+  # cherry-pick - apply the changes introduced by some existing commits; useful for moving small chunks of code between branches.
   cp = cherry-pick
 
   # cherry-pick without making a commit, and when when recording the commit, append a line that says "(cherry picked from commit ...)"
@@ -233,7 +233,7 @@
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
   # Work In Progress: from https://gist.github.com/492227 and VonC on stackoverflow.
-  # tidy: allows for a quick way to add all new and modified files to the index,
+  # This enables a quick way to add all new and modified files to the index,
   # while cleaning the index from the files removed from the working tree;
   # this cleaning will facilite a rebase, because there won't be any conlfict 
   # due to an "unclean" working directory (not in sync with the index).
@@ -251,6 +251,7 @@
   push-svn = svn dcommit
 
   ### CVS ALIASES ###
+
   cvsi = !git cvsimport -k -a
   cvse = cvsexportcommit -u -p 
   cvseh = cvsexportcommit -u -p -c HEAD
@@ -270,8 +271,10 @@
   #
   # Example: search for any commit that adds or removes string "foobar"
   #     git searchcommits foobar
+  #
   # Example: search commits for string "foobar" in directory src/lib
   #     git searchcommits foobar src/lib
+  #
   # Example: search commits for "foobar", print full diff of commit with 1 line context
   #     git searchcommits foobar --pickaxe-all -U1 src/lib
   searchcommits = "!f() { query=\"$1\"; shift; git log -S\"$query\" \"$@\"; }; f \"$@\""
