@@ -6,6 +6,7 @@
   # http://superuser.com/questions/169695/what-are-your-favorite-git-aliases
   # http://stackoverflow.com/questions/1309430/how-to-embed-bash-script-directly-inside-a-git-alias
   # http://code.joejag.com/2013/everyday-git-aliases/
+  # http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
 
   ##
   # One-letter aliases
@@ -307,6 +308,32 @@
   # The unwip will restore the deleted files to the working tree.
   wip = !"git add -A; git ls-files --deleted -z | xargs -0 git rm; git commit -m \"wip\""
   unwip = !"git log -n 1 | grep -q -c wip && git reset HEAD~1"
+
+  # Assume: from http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
+  # Sometimes we want to change a file in a repo, but never check in your edits.
+  # We can't use .gitignore because the file is tracked. We use update-index.
+  #
+  # Suppose we want to edit passwords.txt and for god's sake never check it in:
+  #
+  #     $ git status
+  #     modified passwords.txt
+  #     modified foo.txt
+  # 
+  #     $ git assume passwords.txt
+  #     $ git status
+  #     modified foo.txt
+  #
+  #     $ git assumed
+  #     passwords.txt
+  #
+  #     $ git unassume passwords.txt
+  #     $ git status
+  #     modified passwords.txt
+  #     modified foo.txt
+  #
+  assume   = update-index --assume-unchanged
+  unassume = update-index --no-assume-unchanged
+  assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
 
 
   ### SVN ALIASES ###
