@@ -5,6 +5,7 @@
   # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain
   # http://superuser.com/questions/169695/what-are-your-favorite-git-aliases
   # http://stackoverflow.com/questions/1309430/how-to-embed-bash-script-directly-inside-a-git-alias
+  # http://code.joejag.com/2013/everyday-git-aliases/
 
   ##
   # One-letter aliases
@@ -62,6 +63,9 @@
   # add just the files in the local directory that are updated
   au = add --update .
 
+  # add and commit - goes into each change, and asks if we want to put it in the repo.
+  ac = !git add -p; git commit
+
   # branch - list, create, or delete branches [same as "b"]
   br = branch
 
@@ -103,10 +107,32 @@
 
   # ls-files - show information about files in the index and the working tree; like Unix "ls" command.
   ls = ls-files
+ 
+  # ls-ignored -  list files that git has ignored.
+  ls-ignored ls-files --others --i --exclude-standard
 
   # merge but without autocommit, and with a commit even if the merge resolved as a fast-forward.
   me = merge --no-commit --no-ff
 
+  # pull with rebase - to provide a cleaner, linear, bisectable history.
+  #
+  # To integrate changes between branches, you can merge or rebase. 
+  #
+  # When we use "git pull", git does a fetch then a merge.
+  # If we’ve made changes locally and someone else has pushed changes 
+  # to our git host then git will automatically merge these together
+  # and create a merge commit that looks like this in the history:
+  #
+  #    12345678 - Merge branch 'foo' of bar into master
+  #
+  # When we use "git pull ––rebase", git does a fetch then a rebase.
+  # A rebase resets the HEAD of your local branch to be the same as 
+  # the remote HEAD, then replays your local commits back into repo. 
+  # This means you don’t get any noisy merge messages in your history. 
+  # This gives us a linear history, and also helps with git bisect.
+  # 
+  pr = pull --rebase
+  
   # rebase - forward-port local commits to the updated upstream head.
   rb = rebase
 
@@ -115,6 +141,35 @@
 
   # rebase - restart the rebasing process by skipping the current patch.
   rbs = rebase --skip
+
+  # rbi - rebase interactive on our unpushed commits.
+  #
+  # Before we push our local changes, we may want to do some cleanup, 
+  # to improve our commit messages or squash related commits together. 
+  #
+  # Let’s say I’ve pushed two commits that are related to a new feature and 
+  # I have another where I made a spelling mistake in the commit message. 
+  # When I run "git rbi" I get dropped into my editor with this:
+  #
+  #     pick 7f06d36 foo
+  #     pick ad544d0 goo
+  #     pick de3083a hoo
+  #
+  # Let's say I want to squash the "foo" and "goo" commits together,
+  # and also change "hoo" to say "whatever". To do these, I change "pick"
+  # to say "s" for squash; this tells git to squash the two together;
+  # I also edit "hoo". I make the file look like:
+  #
+  #     pick 7f06d36 foo
+  #     s ad544d0 goo
+  #     r de3083a whatever
+  # This gives me two new commit messages to edit, which I update.
+  # Now when I push the remote repo host receives two commits
+  #
+  #     3400455 - foo
+  #     5dae0a0 - whatever
+  #
+  rbi = !git rebase -i @{u}
 
   # reflog - reference log that manages when tips of branches are updated. 
   rl = reflog
@@ -169,6 +224,7 @@
   heads = !"git log origin/master.. --format='%Cred%h%Creset;%C(yellow)%an%Creset;%H;%Cblue%f%Creset' | git name-rev --stdin --always --name-only | column -t -s';'"
   lost = !"git fsck | awk '/dangling commit/ {print $3}' | git show --format='SHA1: %C(yellow)%h%Creset %f' --stdin | awk '/SHA1/ {sub(\"SHA1: \", \"\"); print}'"
 
+
   ### LOG ALIASES ###
 
   log-graph = log --all --graph --decorate
@@ -186,11 +242,21 @@
   # Show log with dates in our local timezone
   log-local = log --date=local
 
+  # Show the log for my own user email
+  log-me = !git log --author `git config user.email`
+
   # Show log as a graph
   log-graph = log --graph --oneline --decorate
 
   # Show the date of the first commit
   log-first-date = !"git log --date-order --date=iso --pretty=%ad --reverse | head -1"
+
+  # Show the recent day
+  log-day = log ––since yesterday 
+
+  # Show the recent day for your own user, suitable for a daily standup meeting.
+  log-standup = !git log --since yesterday --author `git config user.email` --pretty=short
+
 
   ### LOOKUP ALIASES ###
 
@@ -206,6 +272,7 @@
   # Show who contributed, in descending order by number of commits
   whorank = shortlog -sn --no-merges
 
+
   ### WORKFLOW ALIASES ###
 
   # Stash aliases
@@ -216,7 +283,7 @@
   panic = !tar cvf ../git_panic.tar *
 
   # Do everything we can to synchronize all changes
-  get = !git pull && git submodule update --init --recursive
+  get = !git pull --rebase && git submodule update --init --recursive
   put = !git commit -am "$1" && git push
 
   # Undo aliases
@@ -241,6 +308,7 @@
   wip = !"git add -A; git ls-files --deleted -z | xargs -0 git rm; git commit -m \"wip\""
   unwip = !"git log -n 1 | grep -q -c wip && git reset HEAD~1"
 
+
   ### SVN ALIASES ###
 
   # For SVN-compatible versions of commands, we use "foo-svn" instead
@@ -250,11 +318,13 @@
   merge-svn = merge --squash
   push-svn = svn dcommit
 
+
   ### CVS ALIASES ###
 
   cvsi = !git cvsimport -k -a
   cvse = cvsexportcommit -u -p 
   cvseh = cvsexportcommit -u -p -c HEAD
+
 
   ### GITK ALIASES ###
 
@@ -263,6 +333,7 @@
 
   # show full history in gitk (including "deleted" branches and stashes)
   gitk-history-all = !gitk --all $( git fsck | awk '/dangling commit/ {print $3}' )
+
 
   ### ADVANCED ALIASES ###
 
