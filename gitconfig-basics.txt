@@ -18,7 +18,7 @@
   renames = copy # makes the diff much shorter when moving or copying files
 
 [push]
-  default = matching
+  default = upstream
 
 [rerere]
   enabled = true
