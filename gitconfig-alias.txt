@@ -103,8 +103,11 @@
   # log with items appearing in topological order, i.e. descendant commits are shown before their parents.
   lt = log --topo-order
 
-  # log with lovely output: a graph, colors, one-line commit messages, human-friendly dates relative to the current time.
-  ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  # log line summary: "YYYY-MM-DD <hash> <abbrev-commit>"
+  ll = log --pretty=format:'%ad %h %s' --abbrev-commit --date=short
+
+  # log line longer summary: a graph, colors, one-line commit messages, and iso dates.
+  lll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=iso
 
   # ls-files - show information about files in the index and the working tree; like Unix "ls" command.
   ls = ls-files
