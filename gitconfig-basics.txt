@@ -17,6 +17,9 @@
   renamelimit = 0
   renames = copy # makes the diff much shorter when moving or copying files
 
+[merge]
+  conflictstyle = diff3
+
 [push]
   default = upstream
 
