@@ -19,6 +19,10 @@
 
 [merge]
   conflictstyle = diff3
+  tool = meld-with-three-windows
+
+[mergetool "meld-with-three-windows"]
+  cmd = gitmerge $BASE $LOCAL $REMOTE $MERGED
 
 [push]
   default = upstream

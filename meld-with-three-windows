@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# Launch meld with three windows:
+#
+#   * diff from BASE to LOCAL
+#   * diff from BASE to REMOTE 
+#   * three-pane view
+#
+# To use this, add this to your gitconfig:
+#
+#   [merge]
+#     tool = meld-with_three-windows
+#   [mergetool "meld-with-three-windows"]
+#     cmd = $HOME/bin/gitmerge $BASE $LOCAL $REMOTE $MERGED
+#
+# See http://blog.wuwon.id.au/2010/09/painless-merge-conflict-resolution-in.html
+#
+meld $2 $1 &
+sleep 0.5
+meld $1 $3 &
+sleep 0.5
+meld $2 $4 $3
