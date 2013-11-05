@@ -113,7 +113,7 @@
   ls = ls-files
  
   # ls-ignored -  list files that git has ignored.
-  ls-ignored ls-files --others --i --exclude-standard
+  ls-ignored = ls-files --others --i --exclude-standard
 
   # merge but without autocommit, and with a commit even if the merge resolved as a fast-forward.
   me = merge --no-commit --no-ff
