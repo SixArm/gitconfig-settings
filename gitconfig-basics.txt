@@ -4,10 +4,6 @@
 [branch]
   autosetupmerge = true
 
-[branch "master"]
-  merge = refs/heads/master
-  remote = origin
-
 [core]
   excludesfile = ~/.gitignore
   pager = most
