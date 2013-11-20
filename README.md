@@ -8,7 +8,7 @@ syntax coloring, branch management, and merge strategies.
 
 Get these files:
 
-    git clone git://github.com/SixArm/sixarm_git_gitconfig.git
+    git clone https://github.com/SixArm/sixarm_git_gitconfig.git
 
 To include all these files, add this to the top of your <code>~/.gitconfig</code>
 
