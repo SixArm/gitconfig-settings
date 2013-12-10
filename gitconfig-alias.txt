@@ -314,6 +314,13 @@
   unadd = !git reset HEAD
   unstage = !git reset HEAD
 
+  # Reset aliases, akin to undo alias above
+  reset-hard = !git reset --hard
+  reset-hard-clean = !git reset --hard && git clean -fd
+  reset-commit = !git reset --soft HEAD^
+  reset-add = !git reset HEAD
+  reset-stage = !git reset HEAD
+  
   # Editing and adding conflicted files: when we get many merge conflicts
   # and want to quickly solve them using an editor, then add the  files.
   # Customize this by replacing "emacs" with your preferred editor.
