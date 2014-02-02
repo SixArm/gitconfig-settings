@@ -280,7 +280,7 @@
   log-first-date = !"git log --date-order --date=iso --pretty=%ad --reverse | head -1"
 
   # Show the recent day
-  log-day = log ––since yesterday 
+  log-day = log --since yesterday 
 
   # Show the recent day for your own user, suitable for a daily standup meeting.
   log-standup = !git log --since yesterday --author `git config user.email` --pretty=short
