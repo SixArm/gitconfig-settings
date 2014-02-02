@@ -8,6 +8,7 @@
   # http://code.joejag.com/2013/everyday-git-aliases/
   # http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
   # https://ochronus.com/git-tips-from-the-trenches/
+  # http://mislav.uniqpath.com/2010/07/git-tips/
 
   ##
   # One-letter aliases
