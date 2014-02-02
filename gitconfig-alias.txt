@@ -232,6 +232,9 @@
   # Find text in any commit ever
   grep-all = !"git rev-list --all | xargs git grep '$1'"
 
+  # Sort by date for branches; can be useful for spring cleaning
+  refs-by-date = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short)'
+
 
   ### LOG ALIASES ###
 
