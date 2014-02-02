@@ -44,14 +44,14 @@
   # checkout - update the working tree to match a branch or paths; we use "o" to mean "out".
   o = checkout
 
-  # pull - fetch from and merge with another repository or a local branch.  
+  # pull - fetch from and merge with another repository or a local branch.
   p = pull
 
   # remote - manage set of tracked repositories.
   r = remote
 
-  # status - show the working tree differences 
-  s = status
+  # status - show the working tree differences
+  s = status -sb
 
   # whatchanged - show logs with the differences introduced by each commit.
   w = whatchanged
@@ -69,6 +69,9 @@
   # add and commit - goes into each change, and asks if we want to put it in the repo.
   ac = !git add -p; git commit
 
+  # add by patches - goes into each change, and asks if we want to put it in the repo.
+  ap = add -p
+
   # branch - list, create, or delete branches [same as "b"]
   br = branch
 
@@ -78,9 +81,12 @@
   # branch and only list branches whose tips are not reachable from the specified commit (HEAD if not specified).
   brnm = branch --no-merged
 
+  # branches listed in reverse-chronological modification time
+  brs = for-each-ref --sort=-committerdate --format="%(committerdate:relative)%09%(refname:short)" refs/heads
+
   # commit - amend the tip of the current branch rather than creating a new commit.
-  ca = commit --amend 
- 
+  ca = commit --amend
+
   # commit with --verbose and with the given <msg> as the commit message.
   ci = commit -v -m
 
@@ -93,8 +99,17 @@
   # cherry-pick without making a commit, and when when recording the commit, append a line that says "(cherry picked from commit ...)"
   cp-nx = cherry-pick --no-commit -x
 
+  # diff - show changes not yet staged
+  dc = diff --cached
+
   # diff - show changes between commits, commit and working tree, etc. [same as "d"]
-  di = diff 
+  di = diff
+
+  # diff - changes about to be commited
+  ds = diff --staged
+
+  # diff - show changes but by word, not line
+  dw = diff --word-diff
 
   # log with a text-based graphical representation of the commit history.
   lg = log --graph
@@ -109,11 +124,11 @@
   ll = log --pretty=format:'%ad %h %s' --abbrev-commit --date=short
 
   # log line longer summary: a graph, colors, one-line commit messages, and iso dates.
-  lll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=iso
+  lll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue[%cn]%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=iso
 
   # ls-files - show information about files in the index and the working tree; like Unix "ls" command.
   ls = ls-files
- 
+
   # ls-ignored -  list files that git has ignored.
   ls-ignored = ls-files --others --i --exclude-standard
 
@@ -122,21 +137,21 @@
 
   # pull with rebase - to provide a cleaner, linear, bisectable history.
   #
-  # To integrate changes between branches, you can merge or rebase. 
+  # To integrate changes between branches, you can merge or rebase.
   #
   # When we use "git pull", git does a fetch then a merge.
-  # If we’ve made changes locally and someone else has pushed changes 
+  # If we’ve made changes locally and someone else has pushed changes
   # to our git host then git will automatically merge these together
   # and create a merge commit that looks like this in the history:
   #
   #    12345678 - Merge branch 'foo' of bar into master
   #
   # When we use "git pull ––rebase", git does a fetch then a rebase.
-  # A rebase resets the HEAD of your local branch to be the same as 
-  # the remote HEAD, then replays your local commits back into repo. 
-  # This means you don’t get any noisy merge messages in your history. 
+  # A rebase resets the HEAD of your local branch to be the same as
+  # the remote HEAD, then replays your local commits back into repo.
+  # This means you don’t get any noisy merge messages in your history.
   # This gives us a linear history, and also helps with git bisect.
-  # 
+  #
   # To automatically do "pull --rebase" for any branch based on master:
   #
   #    git config branch.master.rebase true
@@ -146,7 +161,7 @@
   #     git config --global branch.autosetuprebase always
   #
   pr = pull --rebase
-  
+
   # rebase - forward-port local commits to the updated upstream head.
   rb = rebase
 
@@ -158,11 +173,11 @@
 
   # rbi - rebase interactive on our unpushed commits.
   #
-  # Before we push our local changes, we may want to do some cleanup, 
-  # to improve our commit messages or squash related commits together. 
+  # Before we push our local changes, we may want to do some cleanup,
+  # to improve our commit messages or squash related commits together.
   #
-  # Let’s say I’ve pushed two commits that are related to a new feature and 
-  # I have another where I made a spelling mistake in the commit message. 
+  # Let’s say I’ve pushed two commits that are related to a new feature and
+  # I have another where I made a spelling mistake in the commit message.
   # When I run "git rbi" I get dropped into my editor with this:
   #
   #     pick 7f06d36 foo
@@ -185,7 +200,7 @@
   #
   rbi = !git rebase -i @{u}
 
-  # reflog - reference log that manages when tips of branches are updated. 
+  # reflog - reference log that manages when tips of branches are updated.
   rl = reflog
 
   # remote - manage set of tracked repositories [same as "r"].
@@ -213,9 +228,9 @@
   sm = submodule
 
   # submodule with initialize, update, and recursive; this is useful to bring a submodule fully up to date.
-  smu = submodule update --init --recursive 
+  smu = submodule update --init --recursive
 
-  # status - show the working tree differences [same as "s"]  
+  # status - show the working tree differences [same as "s"]
   st = status
 
 
@@ -244,10 +259,10 @@
   # Sort by date for branches; can be useful for spring cleaning
   refs-by-date = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short)'
 
-  # Find all objects that aren't referenced by any other object (orphans). 
+  # Find all objects that aren't referenced by any other object (orphans).
   # To help an orphan, we create a new branch with the orphan's commit hash,
   # then merge it into our current branch:
-  # 
+  #
   #    git branch foo <commit>
   #    git merge foo
   #
@@ -281,7 +296,7 @@
   log-first-date = !"git log --date-order --date=iso --pretty=%ad --reverse | head -1"
 
   # Show the recent day
-  log-day = log --since yesterday 
+  log-day = log --since yesterday
 
   # Show the recent day for your own user, suitable for a daily standup meeting.
   log-standup = !git log --since yesterday --author `git config user.email` --pretty=short
@@ -318,14 +333,14 @@
   #    $ git snapshot
   #
   # Creates this stash:
-  # 
+  #
   #    stash@{0}: On feature/handy-git-tricks: snapshot: Mon Apr 8 12:39:06 BST 2013
   #
   # And seemingly no changes to your working tree.
   #
   snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
 
-  # When you're a little worried that the world is coming to an end 
+  # When you're a little worried that the world is coming to an end
   panic = !tar cvf ../git_panic.tar *
 
   # Do everything we can to synchronize all changes
@@ -345,19 +360,19 @@
   reset-commit = !git reset --soft HEAD^
   reset-add = !git reset HEAD
   reset-stage = !git reset HEAD
-  
+
   # Editing and adding conflicted files: when we get many merge conflicts
   # and want to quickly solve them using an editor, then add the  files.
   edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; $EDITOR `f`"
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
-  # Ours & Theirs - easy merging when you know which files you want 
+  # Ours & Theirs - easy merging when you know which files you want
   #
   # Sometimes during a merge you want to take a file from one side wholesale.
   # The following aliases expose the ours and theirs commands which let you
   # pick a file(s) from the current branch or the merged branch respectively.
   #
-  # N.b. the function is there as hack to get $@ doing 
+  # N.b. the function is there as hack to get $@ doing
   # what you would expect it to as a shell user.
   #
   ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
@@ -366,7 +381,7 @@
   # Work In Progress: from https://gist.github.com/492227 and VonC on stackoverflow.
   # This enables a quick way to add all new and modified files to the index,
   # while cleaning the index from the files removed from the working tree;
-  # this cleaning will facilite a rebase, because there won't be any conlfict 
+  # this cleaning will facilite a rebase, because there won't be any conlfict
   # due to an "unclean" working directory (not in sync with the index).
   # The unwip will restore the deleted files to the working tree.
   wip = !"git add -A; git ls-files --deleted -z | xargs -0 git rm; git commit -m \"wip\""
@@ -381,7 +396,7 @@
   #     $ git status
   #     modified passwords.txt
   #     modified foo.txt
-  # 
+  #
   #     $ git assume passwords.txt
   #     $ git status
   #     modified foo.txt
@@ -415,7 +430,7 @@
   ### CVS ALIASES ###
 
   cvsi = !git cvsimport -k -a
-  cvse = cvsexportcommit -u -p 
+  cvse = cvsexportcommit -u -p
   cvseh = cvsexportcommit -u -p -c HEAD
 
 
@@ -449,18 +464,18 @@
   # If the program to debug is a builtin, we use this alias.
   debug = !GIT_PAGER= gdb --args git
 
-  # Getting the diff of only one function: when we want to see just the 
+  # Getting the diff of only one function: when we want to see just the
   # differences of one function in one file in two different commits,
   # we create two temp files which contain only the function, then diff.
   # Use this alias this way: git funcdiff <old-rev> <new-rev> <path> <function>
   # diff-func = !sh -c "git show \"\$1:\$3\" | sed -n \"/^[^ \t].*\$4(/,/^}/p\" > .tmp1 && git show \"\$2:\$3\" | sed -n \"/^[^ \t].*\$4(/,/^}/p\" > .tmp2 && git diff --no-index .tmp1 .tmp2" -
 
   # Calling "interdiff" between commits: if upstream applied a
-  # slightly modified patch, and we want to see the modifications, 
-  # we use the program interdiff of the patchutils package. 
+  # slightly modified patch, and we want to see the modifications,
+  # we use the program interdiff of the patchutils package.
   intercommit = !sh -c 'git show "$1" > .git/commit1 && git show "$2" > .git/commit2 && interdiff .git/commit[12] | less -FRS' -
 
-  # Prune all your stale remote branches: there's no way to tell 
+  # Prune all your stale remote branches: there's no way to tell
   # git remote update to prune stale branches, and git remote prune
   # does not understand --all. So here is a shell command to do it.
   prune-all = !git remote | xargs -n 1 git remote prune
@@ -482,7 +497,7 @@
     remote_name=${remote_ref##refs/heads/}; \
     echo remotes/$remote/$remote_name'"
 
-  # Thanks to jtolds on stackoverflow  
+  # Thanks to jtolds on stackoverflow
   rebase-recent = !git rebase -i $(git remote-ref)
 
   # Use graphviz for display.
