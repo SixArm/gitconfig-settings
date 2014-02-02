@@ -7,6 +7,7 @@
   # http://stackoverflow.com/questions/1309430/how-to-embed-bash-script-directly-inside-a-git-alias
   # http://code.joejag.com/2013/everyday-git-aliases/
   # http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
+  # https://ochronus.com/git-tips-from-the-trenches/
 
   ##
   # One-letter aliases
@@ -372,6 +373,9 @@
   assume   = update-index --assume-unchanged
   unassume = update-index --no-assume-unchanged
   assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
+
+  # Delete all branches that have already been merged into master.
+  master-cleanse = !"git checkout master && git branch --merged | xargs git branch -d"
 
 
   ### SVN ALIASES ###
