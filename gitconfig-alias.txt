@@ -69,6 +69,9 @@
   # add and commit - goes into each change, and asks if we want to put it in the repo.
   ac = !git add -p; git commit
 
+  # add by patches - goes into each change, and asks if we want to put it in the repo.
+  ap = add -p
+
   # branch - list, create, or delete branches [same as "b"]
   br = branch
 
@@ -77,6 +80,9 @@
 
   # branch and only list branches whose tips are not reachable from the specified commit (HEAD if not specified).
   brnm = branch --no-merged
+
+  # branches listed in reverse-chronological modification time
+  brs = for-each-ref --sort=-committerdate --format="%(committerdate:relative)%09%(refname:short)" refs/heads
 
   # commit - amend the tip of the current branch rather than creating a new commit.
   ca = commit --amend
@@ -93,8 +99,17 @@
   # cherry-pick without making a commit, and when when recording the commit, append a line that says "(cherry picked from commit ...)"
   cp-nx = cherry-pick --no-commit -x
 
+  # diff - show changes not yet staged
+  dc = diff --cached
+
   # diff - show changes between commits, commit and working tree, etc. [same as "d"]
-  di = diff 
+  di = diff
+
+  # diff - changes about to be commited
+  ds = diff --staged
+
+  # diff - show changes but by word, not line
+  dw = diff --word-diff
 
   # log with a text-based graphical representation of the commit history.
   lg = log --graph
