@@ -136,6 +136,14 @@
   # This means you don’t get any noisy merge messages in your history. 
   # This gives us a linear history, and also helps with git bisect.
   # 
+  # To automatically do "pull --rebase" for any branch based on master:
+  #
+  #    git config branch.master.rebase true
+  #
+  # To automatically do "pull --rebase" for all branches:
+  #
+  #     git config --global branch.autosetuprebase always
+  #
   pr = pull --rebase
   
   # rebase - forward-port local commits to the updated upstream head.
