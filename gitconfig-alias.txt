@@ -323,8 +323,7 @@
   
   # Editing and adding conflicted files: when we get many merge conflicts
   # and want to quickly solve them using an editor, then add the  files.
-  # Customize this by replacing "emacs" with your preferred editor.
-  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; emacs `f`"
+  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; $EDITOR `f`"
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
   # Ours & Theirs - easy merging when you know which files you want 
