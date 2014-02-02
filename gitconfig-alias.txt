@@ -235,6 +235,15 @@
   # Sort by date for branches; can be useful for spring cleaning
   refs-by-date = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short)'
 
+  # Find all objects that aren't referenced by any other object (orphans). 
+  # To help an orphan, we create a new branch with the orphan's commit hash,
+  # then merge it into our current branch:
+  # 
+  #    git branch foo <commit>
+  #    git merge foo
+  #
+  orphans = fsck --full
+
 
   ### LOG ALIASES ###
 
