@@ -118,7 +118,7 @@
   ll = log --pretty=format:'%ad %h %s' --abbrev-commit --date=short
 
   # log line longer summary: a graph, colors, one-line commit messages, and iso dates.
-  lll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=iso
+  lll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue[%cn]%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=iso
 
   # ls-files - show information about files in the index and the working tree; like Unix "ls" command.
   ls = ls-files
