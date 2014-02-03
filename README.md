@@ -40,8 +40,8 @@ Do you use GitHub? If so, you can customize the github section for your user id 
 
 ## Suggestion for expert users
 
-   [alias]
-     s = status -sb
+    [alias]
+      s = status -sb
 
 
 ## Suggestion for branch auto setup merge
