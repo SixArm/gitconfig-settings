@@ -68,19 +68,20 @@ Read http://git.or.cz/gitwiki/InterfacesFrontendsAndTools
 Our favorite open source free GUI for Ubuntu is http://cola.tuxfamily.org/
 
 
-## Contributors & More
+## Contributors
 
-  * Joel Parker Henderson
-    <https://github.com/joelparkerhenderson>
+  * [Joel Parker Henderson](https://github.com/joelparkerhenderson)    
     
-  * Bill Lazar
-    <https://github.com/billsaysthis>
+  * [Bill Lazar](https://github.com/billsaysthis)
 
-  * Joe Nelson
-    <https://github.com/begriffs>
+  * [Joe Nelson](https://github.com/begriffs)
+
+  * Many more from the links below
 
 
-For help on git and credit for many of the aliases, please see these excelent resources:
+## For More
+
+For more git config ideas, and for credit for many of the aliases her, please see these excelent resources:
  
   * <https://git.wiki.kernel.org/index.php/Aliases>
   * <http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain>
