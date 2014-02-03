@@ -7,6 +7,8 @@
   # http://stackoverflow.com/questions/1309430/how-to-embed-bash-script-directly-inside-a-git-alias
   # http://code.joejag.com/2013/everyday-git-aliases/
   # http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
+  # https://ochronus.com/git-tips-from-the-trenches/
+  # http://mislav.uniqpath.com/2010/07/git-tips/
 
   ##
   # One-letter aliases
@@ -113,7 +115,7 @@
   ls = ls-files
 
   # ls-ignored -  list files that git has ignored.
-  ls-ignored ls-files --others --i --exclude-standard
+  ls-ignored = ls-files --others --i --exclude-standard
 
   # merge but without autocommit, and with a commit even if the merge resolved as a fast-forward.
   me = merge --no-commit --no-ff
@@ -129,11 +131,19 @@
   #
   #    12345678 - Merge branch 'foo' of bar into master
   #
-  # When we use "git pull ––rebase", git does a fetch then a rebase.
+  # When we use "git pull --rebase", git does a fetch then a rebase.
   # A rebase resets the HEAD of your local branch to be the same as
   # the remote HEAD, then replays your local commits back into repo.
   # This means you don’t get any noisy merge messages in your history.
   # This gives us a linear history, and also helps with git bisect.
+  # 
+  # To automatically do "pull --rebase" for any branch based on master:
+  #
+  #    git config branch.master.rebase true
+  #
+  # To automatically do "pull --rebase" for all branches:
+  #
+  #     git config --global branch.autosetuprebase always
   #
   pr = pull --rebase
 
@@ -228,6 +238,21 @@
   heads = !"git log origin/master.. --format='%Cred%h%Creset;%C(yellow)%an%Creset;%H;%Cblue%f%Creset' | git name-rev --stdin --always --name-only | column -t -s';'"
   lost = !"git fsck | awk '/dangling commit/ {print $3}' | git show --format='SHA1: %C(yellow)%h%Creset %f' --stdin | awk '/SHA1/ {sub(\"SHA1: \", \"\"); print}'"
 
+  # Find text in any commit ever
+  grep-all = !"git rev-list --all | xargs git grep '$1'"
+
+  # Sort by date for branches; can be useful for spring cleaning
+  refs-by-date = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short)'
+
+  # Find all objects that aren't referenced by any other object (orphans). 
+  # To help an orphan, we create a new branch with the orphan's commit hash,
+  # then merge it into our current branch:
+  # 
+  #    git branch foo <commit>
+  #    git merge foo
+  #
+  orphans = fsck --full
+
 
   ### LOG ALIASES ###
 
@@ -256,7 +281,13 @@
   log-first-date = !"git log --date-order --date=iso --pretty=%ad --reverse | head -1"
 
   # Show the recent day
+<<<<<<< HEAD
   log-day = log ––since yesterday
+||||||| merged common ancestors
+  log-day = log ––since yesterday 
+=======
+  log-day = log --since yesterday 
+>>>>>>> 375e1fb30fdbddb9e3ef2dcf99d34bd9e1011fe6
 
   # Show the recent day for your own user, suitable for a daily standup meeting.
   log-standup = !git log --since yesterday --author `git config user.email` --pretty=short
@@ -314,10 +345,16 @@
   unadd = !git reset HEAD
   unstage = !git reset HEAD
 
+  # Reset aliases, akin to undo alias above
+  reset-hard = !git reset --hard
+  reset-hard-clean = !git reset --hard && git clean -fd
+  reset-commit = !git reset --soft HEAD^
+  reset-add = !git reset HEAD
+  reset-stage = !git reset HEAD
+  
   # Editing and adding conflicted files: when we get many merge conflicts
   # and want to quickly solve them using an editor, then add the  files.
-  # Customize this by replacing "emacs" with your preferred editor.
-  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; emacs `f`"
+  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; $EDITOR `f`"
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
   # Ours & Theirs - easy merging when you know which files you want
@@ -366,6 +403,9 @@
   assume   = update-index --assume-unchanged
   unassume = update-index --no-assume-unchanged
   assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
+
+  # Delete all branches that have already been merged into master.
+  master-cleanse = !"git checkout master && git branch --merged | xargs git branch -d"
 
 
   ### MAINTENANCE ALIASES ###

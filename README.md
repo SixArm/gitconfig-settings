@@ -8,7 +8,7 @@ syntax coloring, branch management, and merge strategies.
 
 Get these files:
 
-    git clone git://github.com/SixArm/sixarm_git_gitconfig.git
+    git clone https://github.com/SixArm/sixarm_git_gitconfig.git
 
 To include all these files, add this to the top of your <code>~/.gitconfig</code>
 
@@ -38,6 +38,12 @@ Do you use GitHub? If so, you can customize the github section for your user id 
       token = sixarm-token
 
 
+## Suggestion for expert users
+
+   [alias]
+     s = status -sb
+
+
 ## Suggestion for branch auto setup merge
 
 We tell git-branch and git-checkout to setup new branches so that git-pull
@@ -61,3 +67,26 @@ Read http://git.or.cz/gitwiki/InterfacesFrontendsAndTools
 
 Our favorite open source free GUI for Ubuntu is http://cola.tuxfamily.org/
 
+
+## Contributors & More
+
+  * Joel Parker Henderson
+    <https://github.com/joelparkerhenderson>
+    
+  * Bill Lazar
+    <https://github.com/billsaysthis>
+
+  * Joe Nelson
+    <https://github.com/begriffs>
+
+
+For help on git and credit for many of the aliases, please see these excelent resources:
+ 
+  * <https://git.wiki.kernel.org/index.php/Aliases>
+  * <http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain>
+  * <http://superuser.com/questions/169695/what-are-your-favorite-git-aliases>
+  * <http://stackoverflow.com/questions/1309430/how-to-embed-bash-script-directly-inside-a-git-alias>
+  * <http://code.joejag.com/2013/everyday-git-aliases/>
+  * <http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/>
+  * <https://ochronus.com/git-tips-from-the-trenches/>
+  * <http://mislav.uniqpath.com/2010/07/git-tips/>
