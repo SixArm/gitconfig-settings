@@ -90,3 +90,6 @@ For help on git and credit for many of the aliases, please see these excelent re
   * <http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/>
   * <https://ochronus.com/git-tips-from-the-trenches/>
   * <http://mislav.uniqpath.com/2010/07/git-tips/>
+  * <https://ochronus.com/git-tips-from-the-trenches/>
+  * <http://mislav.uniqpath.com/2010/07/git-tips/>
+
