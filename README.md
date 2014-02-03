@@ -19,6 +19,14 @@ To include all these files, add this to the top of your <code>~/.gitconfig</code
        path = sixarm_git_gitconfig/gitconfig-github.txt
        path = sixarm_git_gitconfig/gitconfig-user.txt
 
+This repo configures git to use the `most` pager rather than `less` or
+`more`. You can install `most` like this:
+
+    # Homebrew, in OS X
+    brew install most
+
+    # Ubuntu
+    sudo aptitude install most
 
 ## Personalization
 
