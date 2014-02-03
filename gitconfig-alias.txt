@@ -63,11 +63,14 @@
   # developers use whichever alias they prefer.
   ##
 
-  # add just the files in the local directory that are updated
+  # add just the files in the local directory that are updated.
   au = add --update .
 
-  # add and commit - goes into each change, and asks if we want to put it in the repo.
+  # add by patch then commit - looks at each change, and asks if we want to put it in the repo, then commits.
   ac = !git add -p; git commit
+
+  # add by patch - looks at each change, and asks if we want to put it in the repo.
+  ap = add -p
 
   # branch - list, create, or delete branches [same as "b"]
   br = branch
@@ -93,8 +96,14 @@
   # cherry-pick without making a commit, and when when recording the commit, append a line that says "(cherry picked from commit ...)"
   cp-nx = cherry-pick --no-commit -x
 
-  # diff - show changes between commits, commit and working tree, etc. [same as "d"]
-  di = diff
+  # diff - show changes not yet staged
+  dc = diff --cached
+
+  # diff - changes about to be commited
+  ds = diff --staged
+
+  # diff - show changes but by word, not line
+  dw = diff --word-diff
 
   # log with a text-based graphical representation of the commit history.
   lg = log --graph
@@ -136,7 +145,7 @@
   # the remote HEAD, then replays your local commits back into repo.
   # This means you don’t get any noisy merge messages in your history.
   # This gives us a linear history, and also helps with git bisect.
-  # 
+  #
   # To automatically do "pull --rebase" for any branch based on master:
   #
   #    git config branch.master.rebase true
@@ -244,10 +253,10 @@
   # Sort by date for branches; can be useful for spring cleaning
   refs-by-date = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short)'
 
-  # Find all objects that aren't referenced by any other object (orphans). 
+  # Find all objects that aren't referenced by any other object (orphans).
   # To help an orphan, we create a new branch with the orphan's commit hash,
   # then merge it into our current branch:
-  # 
+  #
   #    git branch foo <commit>
   #    git merge foo
   #
@@ -281,7 +290,7 @@
   log-first-date = !"git log --date-order --date=iso --pretty=%ad --reverse | head -1"
 
   # Show the recent day
-  log-day = log --since yesterday 
+  log-day = log --since yesterday
 
   # Show the recent day for your own user, suitable for a daily standup meeting.
   log-standup = !git log --since yesterday --author `git config user.email` --pretty=short
@@ -345,7 +354,7 @@
   reset-commit = !git reset --soft HEAD^
   reset-add = !git reset HEAD
   reset-stage = !git reset HEAD
-  
+
   # Editing and adding conflicted files: when we get many merge conflicts
   # and want to quickly solve them using an editor, then add the  files.
   edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; $EDITOR `f`"
