@@ -50,7 +50,7 @@
   # remote - manage set of tracked repositories.
   r = remote
 
-  # status - show the working tree differences
+  # status - show the working tree differences. (Expert users may prefer: status -sb)
   s = status
 
   # whatchanged - show logs with the differences introduced by each commit.
@@ -281,13 +281,7 @@
   log-first-date = !"git log --date-order --date=iso --pretty=%ad --reverse | head -1"
 
   # Show the recent day
-<<<<<<< HEAD
-  log-day = log ––since yesterday
-||||||| merged common ancestors
-  log-day = log ––since yesterday 
-=======
   log-day = log --since yesterday 
->>>>>>> 375e1fb30fdbddb9e3ef2dcf99d34bd9e1011fe6
 
   # Show the recent day for your own user, suitable for a daily standup meeting.
   log-standup = !git log --since yesterday --author `git config user.email` --pretty=short
