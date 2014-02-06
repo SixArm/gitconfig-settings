@@ -50,13 +50,21 @@ Do you use GitHub? If so, you can customize the github section for your user id 
       token = sixarm-token
 
 
-## Suggestions for expert users
+## Pager
+
+Change the pager from `less` to `most`:
+
+    [core]
+      pager = most
+
+
+## Suggestion for expert users
+
+Show terse output for git status:
 
     [alias]
       s = status -sb
 
-    [core]
-      pager = less
 
 
 ## Suggestion for branch auto setup merge
