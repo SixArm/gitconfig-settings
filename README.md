@@ -14,7 +14,10 @@ To include all these files, add this to the top of your <code>~/.gitconfig</code
 
     [include]
        path = sixarm_git_gitconfig/gitconfig-alias.txt
+       path = sixarm_git_gitconfig/gitconfig-alias-for-cvs.txt
+       path = sixarm_git_gitconfig/gitconfig-alias-for-gitk.txt
        path = sixarm_git_gitconfig/gitconfig-alias-for-rails.txt
+       path = sixarm_git_gitconfig/gitconfig-alias-for-svn.txt
        path = sixarm_git_gitconfig/gitconfig-basics.txt
        path = sixarm_git_gitconfig/gitconfig-color.txt
        path = sixarm_git_gitconfig/gitconfig-github.txt
