@@ -1,0 +1,7 @@
+[alias]
+
+  ### CVS ALIASES ###
+
+  cvsi = !git cvsimport -k -a
+  cvse = cvsexportcommit -u -p
+  cvseh = cvsexportcommit -u -p -c HEAD
