@@ -10,6 +10,12 @@
   # https://ochronus.com/git-tips-from-the-trenches/
   # http://mislav.uniqpath.com/2010/07/git-tips/
 
+  # Thanks also to StackOverflow answers and edits:
+  # [Scott Lindsay](http://stackoverflow.com/users/167384/scott-lindsay)
+  # [baudtack](http://baudtack.com)
+  # [Ruben Verborgh](http://ruben.verborgh.org)
+  # [Rob Kennedy](http://cs.wisc.edu/~rkennedy)
+
   ##
   # One-letter aliases
   ##
