@@ -23,14 +23,6 @@ To include all these files, add this to the top of your <code>~/.gitconfig</code
        path = sixarm_git_gitconfig/gitconfig-github.txt
        path = sixarm_git_gitconfig/gitconfig-user.txt
 
-This repo configures git to use the `most` pager rather than `less` or
-`more`. You can install `most` like this:
-
-    # Homebrew, in OS X
-    brew install most
-
-    # Ubuntu
-    sudo aptitude install most
 
 ## Personalization
 
@@ -50,9 +42,19 @@ Do you use GitHub? If so, you can customize the github section for your user id 
       token = sixarm-token
 
 
-## Pager
+## Suggestion for pager
 
-Change the pager from `less` to `most`:
+We like to use the pager `most` rather than `less` or `more`. 
+
+To install `most`:
+
+    # Homebrew, in OS X
+    brew install most
+
+    # Ubuntu
+    sudo apt-get install most
+
+To use `most`:
 
     [core]
       pager = most
