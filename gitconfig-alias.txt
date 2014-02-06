@@ -457,32 +457,7 @@
   # us from a window that has very large objects such as binary blobs.
   #
   repack-recommended = repack -a -d -f --depth=250 --window=250 --window-memory=1g
-
-  ### SVN ALIASES ###
-
-  # For SVN-compatible versions of commands, we use "foo-svn" instead
-  # of "svn-foo" so that it's suggested when we tab-complete "git fo..."
-  cherry-pick-svn = !GIT_EDITOR='sed -i /^git-svn-id:/d' git cherry-pick -e
-  branch-svn = svn branch
-  merge-svn = merge --squash
-  push-svn = svn dcommit
-
-
-  ### CVS ALIASES ###
-
-  cvsi = !git cvsimport -k -a
-  cvse = cvsexportcommit -u -p
-  cvseh = cvsexportcommit -u -p -c HEAD
-
-
-  ### GITK ALIASES ###
-
-  # show conflicting merge in gitk:
-  gitk-conflict = !gitk --left-right HEAD...MERGE_HEAD
-
-  # show full history in gitk (including "deleted" branches and stashes)
-  gitk-history-all = !gitk --all $( git fsck | awk '/dangling commit/ {print $3}' )
-
+  
 
   ### ADVANCED ALIASES ###
 
