@@ -50,10 +50,13 @@ Do you use GitHub? If so, you can customize the github section for your user id 
       token = sixarm-token
 
 
-## Suggestion for expert users
+## Suggestions for expert users
 
     [alias]
       s = status -sb
+
+    [core]
+      pager = less
 
 
 ## Suggestion for branch auto setup merge
