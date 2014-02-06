@@ -1,0 +1,9 @@
+[alias]
+
+  ### GITK ALIASES ###
+
+  # show conflicting merge in gitk:
+  gitk-conflict = !gitk --left-right HEAD...MERGE_HEAD
+
+  # show full history in gitk (including "deleted" branches and stashes)
+  gitk-history-all = !gitk --all $( git fsck | awk '/dangling commit/ {print $3}' )
