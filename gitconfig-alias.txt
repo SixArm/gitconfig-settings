@@ -343,10 +343,6 @@
   # When you're a little worried that the world is coming to an end
   panic = !tar cvf ../git_panic.tar *
   
-  # Run shell scripts. Git always runs scripts in the top directory.
-  # For example "git exec pwd" will always show you the top directory.
-  exec = ! exec 
-
   # Do everything we can to synchronize all changes
   get = !git pull --rebase && git submodule update --init --recursive
   put = !git commit -am "$1" && git push
@@ -419,6 +415,16 @@
 
   # Delete all branches that have already been merged into master.
   master-cleanse = !"git checkout master && git branch --merged | xargs git branch -d"
+
+
+  ### SHELL SCRIPTING ALIASES ###
+
+  # Get the top level directory, regardless of what subdirectory we're in.
+  root = ! pwd
+
+  # Execute shell scripts. Git always runs scripts in the top directory.
+  # For example "git exec pwd" will always show you the top directory.
+  exec = ! exec 
 
 
   ### MAINTENANCE ALIASES ###
