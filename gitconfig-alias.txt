@@ -338,8 +338,8 @@
   panic = !tar cvf ../git_panic.tar *
   
   # Run shell scripts. Git always runs scripts in the top directory.
-  # For example "git exec make" will run make in the same directory as .git.
-  exec = !exec 
+  # For example "git exec pwd" will always show you the top directory.
+  exec = ! exec 
 
   # Do everything we can to synchronize all changes
   get = !git pull --rebase && git submodule update --init --recursive
