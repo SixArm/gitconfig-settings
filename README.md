@@ -89,7 +89,7 @@ Our favorite open source free GUI for Ubuntu is http://cola.tuxfamily.org/
 
 ## For More
 
-For more git config ideas, and for credit for many of the aliases her, please see these excelent resources:
+For more git config ideas, and for credit for many of the aliases here, please see these excelent resources:
  
   * <https://git.wiki.kernel.org/index.php/Aliases>
   * <http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain>
