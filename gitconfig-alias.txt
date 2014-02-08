@@ -9,13 +9,17 @@
   # http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
   # https://ochronus.com/git-tips-from-the-trenches/
   # http://mislav.uniqpath.com/2010/07/git-tips/
+  
 
   # Thanks also to StackOverflow answers and edits:
   # [Scott Lindsay](http://stackoverflow.com/users/167384/scott-lindsay)
   # [baudtack](http://baudtack.com)
   # [Ruben Verborgh](http://ruben.verborgh.org)
   # [Rob Kennedy](http://cs.wisc.edu/~rkennedy)
-
+  # [Corey Haines](http://coreyhaines.com/)
+  # [Mislav Marohnić](http://mislav.uniqpath.com/)
+  # [Gary Bernhardt](http://destroyallsoftware.com)
+  
   ##
   # One-letter aliases
   ##
@@ -300,6 +304,55 @@
 
   # Show the recent day for your own user, suitable for a daily standup meeting.
   log-standup = !git log --since yesterday --author `git config user.email` --pretty=short
+
+  # churn: show log of files that have many changes
+  #
+  #   * Written by (Corey Haines)[http://coreyhaines.com/]
+  #   * Scriptified by Gary Bernhardt
+  #   * Obtained from https://github.com/garybernhardt/dotfiles/blob/master/bin/git-churn
+  #   * Edited for sixarm_git_config repo by Joel Parker Henderson
+  #   * Comments by Mislav http://mislav.uniqpath.com/2014/02/hidden-documentation/
+  #
+  # Show churn for whole repo:
+  #
+  #   $ git churn
+  #
+  # Show churn for specific directories:
+  #
+  #   $ git churn app lib
+  #
+  # Show churn for a time range:
+  #
+  #   $ git churn --since='1 month ago'
+  #
+  # These are all standard arguments to `git log`.
+  #
+  # It’s possible to get valuable insight from history of a project not only 
+  # by viewing individual commits, but by analyzing sets of changes as a whole. 
+  # For instance, git-log-churn compiles stats about which files change the most.
+  #
+  # For example, to see where work on an app was focused on in the past month:
+  #
+  #     $ git churn --since='1 month ago' app/ | tail
+  #
+  # This can also highlight potential problems with technical debt in a project.
+  # A specific file changing too often is generally a red flag, since it probably 
+  # means the file either needed to be frequently fixed for bugs, or the file 
+  # holds too much responsibility and should be split into smaller units.
+  #
+  # Similar methods of history analysis can be employed to see which people were
+  # responsible recently for development of a certain part of the codebase. 
+  #
+  # For instance, to see who contributed most to the API part of an application:
+  #
+  #    $ git log --format='%an' --since='1 month ago' app/controllers/api/ | \
+  #      sort | uniq -c | sort -rn | head
+  #
+  #    109 Alice Anderson
+  #    13 Bob Brown
+  #    7 Carol Clark
+  #  
+  churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count\tfile"} {print $1 "\t" $2}' | sort -g
 
 
   ### LOOKUP ALIASES ###
