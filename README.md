@@ -119,10 +119,12 @@ For more git config ideas, and for credit for many of the aliases here, please s
   * <https://ochronus.com/git-tips-from-the-trenches/>
   * <http://mislav.uniqpath.com/2010/07/git-tips/>
 
-Thanks also to StackOverflow help:
+## Thanks
 
   * [Scott Lindsay](http://stackoverflow.com/users/167384/scott-lindsay)
   * [baudtack](http://baudtack.com)
   * [Ruben Verborgh](http://ruben.verborgh.org)
   * [Rob Kennedy](http://cs.wisc.edu/~rkennedy)
-
+  * [Corey Haines](http://coreyhaines.com/)
+  * [Mislav Marohnić](http://mislav.uniqpath.com/)
+  * [Gary Bernhardt](http://destroyallsoftware.com)
