@@ -1,7 +1,6 @@
-# SixArm.com » Git » <br> gitconfig for user, alias, color, branch, etc. 
+# SixArm.com » Git » <br> gitconfig files
 
-Git configuration settings for our git users, command aliases, 
-syntax coloring, branch management, and merge strategies.
+Git configuration for alias commands, branch management, syntax coloring, merge strategies, and more.
 
 
 ## Setup
@@ -10,25 +9,30 @@ Get these files:
 
     git clone https://github.com/SixArm/sixarm_git_gitconfig.git
 
-To include these files, add this to the top of your <code>~/.gitconfig</code>
+Copy these files wherever you want to keep them, such as:
+
+    mkdir ~/.gitconfig.d
+    cp sixarm_git_gitconfig/gitconfig.d/* ~/.gitconfig.d/
+
+Include these files in your `~/.gitconfig` file:
 
     [include]
-       path = gitconfig.d/alias.txt
-       path = gitconfig.d/alias-for-cvs.txt
-       path = gitconfig.d/alias-for-gitk.txt
-       path = gitconfig.d/alias-for-rails.txt
-       path = gitconfig.d/alias-for-svn.txt
-       path = gitconfig.d/apply.txt
-       path = gitconfig.d/branch.txt
-       path = gitconfig.d/color.txt
-       path = gitconfig.d/core.txt
-       path = gitconfig.d/diff.txt
-       path = gitconfig.d/github.txt
-       path = gitconfig.d/merge.txt
-       path = gitconfig.d/mergetool.txt
-       path = gitconfig.d/push.txt
-       path = gitconfig.d/rerere.txt
-       path = gitconfig.d/user.txt
+       path = ~/.gitconfig.d/alias.txt
+       path = ~/.gitconfig.d/alias-for-cvs.txt
+       path = ~/.gitconfig.d/alias-for-gitk.txt
+       path = ~/.gitconfig.d/alias-for-rails.txt
+       path = ~/.gitconfig.d/alias-for-svn.txt
+       path = ~/.gitconfig.d/apply.txt
+       path = ~/.gitconfig.d/branch.txt
+       path = ~/.gitconfig.d/color.txt
+       path = ~/.gitconfig.d/core.txt
+       path = ~/.gitconfig.d/diff.txt
+       path = ~/.gitconfig.d/github.txt
+       path = ~/.gitconfig.d/merge.txt
+       path = ~/.gitconfig.d/mergetool.txt
+       path = ~/.gitconfig.d/push.txt
+       path = ~/.gitconfig.d/rerere.txt
+       path = ~/.gitconfig.d/user.txt
 
 To use the mergetool `meld-with-three-windows`, put the script on your path, for example:
 
