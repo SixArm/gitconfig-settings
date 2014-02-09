@@ -1,0 +1,3 @@
+[merge]
+  conflictstyle = diff3
+  tool = meld-with-three-windows

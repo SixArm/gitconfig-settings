@@ -10,18 +10,29 @@ Get these files:
 
     git clone https://github.com/SixArm/sixarm_git_gitconfig.git
 
-To include all these files, add this to the top of your <code>~/.gitconfig</code>
+To include these files, add this to the top of your <code>~/.gitconfig</code>
 
     [include]
-       path = sixarm_git_gitconfig/gitconfig-alias.txt
-       path = sixarm_git_gitconfig/gitconfig-alias-for-cvs.txt
-       path = sixarm_git_gitconfig/gitconfig-alias-for-gitk.txt
-       path = sixarm_git_gitconfig/gitconfig-alias-for-rails.txt
-       path = sixarm_git_gitconfig/gitconfig-alias-for-svn.txt
-       path = sixarm_git_gitconfig/gitconfig-basics.txt
-       path = sixarm_git_gitconfig/gitconfig-color.txt
-       path = sixarm_git_gitconfig/gitconfig-github.txt
-       path = sixarm_git_gitconfig/gitconfig-user.txt
+       path = gitconfig.d/alias.txt
+       path = gitconfig.d/alias-for-cvs.txt
+       path = gitconfig.d/alias-for-gitk.txt
+       path = gitconfig.d/alias-for-rails.txt
+       path = gitconfig.d/alias-for-svn.txt
+       path = gitconfig.d/apply.txt
+       path = gitconfig.d/branch.txt
+       path = gitconfig.d/color.txt
+       path = gitconfig.d/core.txt
+       path = gitconfig.d/diff.txt
+       path = gitconfig.d/github.txt
+       path = gitconfig.d/merge.txt
+       path = gitconfig.d/mergetool.txt
+       path = gitconfig.d/push.txt
+       path = gitconfig.d/rerere.txt
+       path = gitconfig.d/user.txt
+
+To use the mergetool `meld-with-three-windows`, put the script on your path, for example:
+
+    cp bin/meld-with-three-windows /usr/local/bin
 
 
 ## Personalization
@@ -29,17 +40,14 @@ To include all these files, add this to the top of your <code>~/.gitconfig</code
 Customize the gitconfig file sections for user:
 
     [user]
-      email = sixarm@sixarm.com
-      name = SixArm
-
-
-## GitHub
+      email = alice@example.com
+      name = Alice Anderson
 
 Do you use GitHub? If so, you can customize the github section for your user id and token:
 
     [github]
-      user = sixarm
-      token = sixarm-token
+      user = alice
+      token = alice-token
 
 
 ## Suggestion for pager

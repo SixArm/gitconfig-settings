@@ -1,0 +1,2 @@
+[mergetool "meld-with-three-windows"]
+  cmd = gitmerge $BASE $LOCAL $REMOTE $MERGED

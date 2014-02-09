@@ -1,0 +1,2 @@
+[rerere]
+  enabled = true
