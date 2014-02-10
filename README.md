@@ -14,7 +14,7 @@ Copy these files wherever you want to keep them, such as:
     mkdir ~/.gitconfig.d
     cp sixarm_git_gitconfig/gitconfig.d/* ~/.gitconfig.d/
 
-Include these files in your `~/.gitconfig` file:
+Include the files you want in your `~/.gitconfig` file:
 
     [include]
        path = ~/.gitconfig.d/alias.txt
@@ -53,32 +53,20 @@ Do you use GitHub? If so, you can customize the github section for your user id 
       user = alice
       token = alice-token
 
-
-## Suggestion for pager
-
-We like to use the pager `most` rather than `less` or `more`. 
-
-To install `most`:
-
-    # Homebrew, in OS X
-    brew install most
-
-    # Ubuntu
-    sudo apt-get install most
-
-To use `most`:
-
-    [core]
-      pager = most
-
-
-## Suggestion for expert users
-
-Show terse output for git status:
+Do you prefer terse status messages? 
 
     [alias]
       s = status -sb
 
+Do you prefer using `most` as a pager? (Get it by doing `brew install most` or `apt-get install most` etc.)
+
+    [core]
+      pager = most
+
+To use better pretty formatting:
+
+    [format]
+      pretty = "%H %ci %ce %ae %d %s"
 
 
 ## Suggestion for branch auto setup merge
