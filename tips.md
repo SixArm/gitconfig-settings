@@ -8,41 +8,45 @@ Most of these tips are from Scott Chacon’s gitcast on git log and R. Tyler Bal
 
 `git log -<n>`
   
-Show the log for n number of commits. For example, git log -2 for the last two commits.
+Show `n` number of commits. For example, `git log -2` shows the last two commits.
 
 `git log --stat`
 
-Show the log with output for files changed and insertions/deletions. Basically the normal output of git commit appended to each message.
+Show files changed and insertions/deletions. Basically the normal output of git commit appended to each message.
 
 `git log --name-status`
 
-Attaches SVN-like add/modified/deleted for each commit. Very basic but still gives a decent idea about what’s changed.
+Show SVN-like add/modified/deleted for each commit. Very basic but still gives a decent idea about what’s changed.
 
-`git log --pretty=oneline`
+`git log --oneline`
 
-Compresses each commit to its SHA1 and message on one line. Pipe to wc -l if you want to count commits!
+Compress each commit to its SHA1 and message on one line. Pipe to wc -l if you want to count commits.
 
-`git log origin..HEAD`
+`git log -- origin..HEAD`
 
-See if there’s any commits that have not been pushed to your origin remote. (Thanks for the tip, Ryan Bates!)
+Show commits that have not been pushed to your origin remote. (Thanks for the tip, Ryan Bates!)
 
 `git log <file>`
 
-See all commits that affected only the file given.
+Show commits that affected only the file given.
 
 `git log --no-merges --author=dave`
 
-See all commits that dave has worked on, and ignore any merge commits to reduce noise.
+Show commits that dave has worked on, and ignore any merge commits to reduce noise.
 
 `git log --since="1 week ago"`
 
-View commits that have happened since last week. Could easily be replaced with yesterday, 1 year ago, 3 months ago, 1/20/09 and so on. There’s also other time based options: --after, --until, and --before if you want to get creative.
+Show commits that have happened since last week. Could easily be replaced with `yesterday`, `1 year ago`, `3 months ago`, `12/31/2014` and so on. There’s also other time based options: `--after`, `--until`, and `--before`.
 
 `git log --grep='^Bump'`
 
-Search through commit messages to find ones that start with the string “Bump”. This will take in any regular expression, so if you’re looking for that one commit you did and all you can remember is a part of the message, --grep will find it.
+Search commit messages to find ones that start with the string “Bump”. This will take in any regular expression, so if you’re looking for that one commit you did and all you can remember is a part of the message, --grep will find it.
+
+Search commits for matching text.
 
 `git --no-pager log`
 
 Don’t want to use less to view your commits? This option will just give you the straight output if you need it.
+
+
 
