@@ -42,7 +42,9 @@ Show commits that have happened since last week. Could easily be replaced with `
 
 Search commit messages to find ones that start with the string “Bump”. This will take in any regular expression, so if you’re looking for that one commit you did and all you can remember is a part of the message, --grep will find it.
 
-Search commits for matching text.
+`git log -S 'text'`
+
+Search commit diffs for matching text.
 
 `git --no-pager log`
 
