@@ -34,9 +34,32 @@ Edit your `~/.gitconfig` file to include any of the files you want to use:
        path = ~/.gitconfig.d/rerere.txt
        path = ~/.gitconfig.d/user.txt
 
-You can override any of items by adding your own item later in the file.
 
-For example, to use our git log aliases and also override "git l" with your own definition:
+## User personalization
+
+If you use the `user.txt` file, you will want to personalize it:
+
+    [user]
+      email = alice@example.com
+      name = Alice Anderson
+
+
+## GitHub personalization
+
+If you use GitHub and the `github.txt` file, you will want to personalize it:
+
+    [github]
+      user = alice
+      token = alice-token
+
+
+## Customization
+
+You can customize any of the file items by editing the file as you like.
+
+You can also customize any of the file items by adding your own item later in your own gitconfig file.
+
+For example you can include our aliases then customize "git l" with your own definition:
 
     [include]
        path = ~/.gitconfig.d/alias.txt
@@ -45,48 +68,48 @@ For example, to use our git log aliases and also override "git l" with your own 
        l = log --graph --oneline
 
 
-## Meld
-
-To use the mergetool `meld-with-three-windows`, put the script on your path, for example:
-
-    cp bin/meld-with-three-windows /usr/local/bin
-
-
-## Personalization
-
-You can override any of these settings by using your own gitconfig file.
-
-Customize the gitconfig file sections for user:
-
-    [user]
-      email = alice@example.com
-      name = Alice Anderson
-
-Do you use GitHub? If so, you can customize the github section for your user id and token:
-
-    [github]
-      user = alice
-      token = alice-token
-
-Do you prefer terse status messages?
-
-    [alias]
-      s = status -sb
-
-Do you prefer log message summaries?
-
-    [alias]
-      l = log --graph --oneline
-
-Do you prefer using `most` as a pager? (Get it by doing `brew install most` or `apt-get install most` etc.)
-
-    [core]
-      pager = most
+## Format
 
 To use better pretty formatting:
 
     [format]
       pretty = "%H %ci %ce %ae %d %s"
+
+
+## Status
+
+If you like terse status messages:
+
+    [alias]
+      s = status -sb
+
+## Log
+
+If you like log summaries:
+
+    [alias]
+      l = log --graph --oneline
+
+
+## Meld merge tool
+
+We like using the `meld` mergetool because it is powerful and can use three windows for comparisons.
+
+This repo includes a script for running `meld` with three windows.
+
+To use meld with three windows, put the script on your path, for example:
+
+    cp bin/meld-with-three-windows /usr/local/bin
+
+
+## Most pager
+
+If you prefer using `most` as a pager:
+
+    [core]
+      pager = most
+
+To get `most`, do `brew install most` on OSX, or `apt-get install most` on Ubuntu, etc.
 
 
 ## Suggestion for branch auto setup merge
