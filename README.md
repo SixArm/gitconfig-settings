@@ -14,7 +14,7 @@ Copy these files wherever you want to keep them, such as:
     mkdir ~/.gitconfig.d
     cp sixarm_git_gitconfig/gitconfig.d/* ~/.gitconfig.d/
 
-Include the files you want in your `~/.gitconfig` file:
+Edit your `~/.gitconfig` file to include any of the files you want to use:
 
     [include]
        path = ~/.gitconfig.d/alias.txt
@@ -34,12 +34,27 @@ Include the files you want in your `~/.gitconfig` file:
        path = ~/.gitconfig.d/rerere.txt
        path = ~/.gitconfig.d/user.txt
 
+You can override any of items by adding your own item later in the file.
+
+For example, to use our git log aliases and also override "git l" with your own definition:
+
+    [include]
+       path = ~/.gitconfig.d/alias.txt
+
+    [alias]
+       l = log --graph --oneline
+
+
+## Meld
+
 To use the mergetool `meld-with-three-windows`, put the script on your path, for example:
 
     cp bin/meld-with-three-windows /usr/local/bin
 
 
 ## Personalization
+
+You can override any of these settings by using your own gitconfig file.
 
 Customize the gitconfig file sections for user:
 
@@ -53,10 +68,15 @@ Do you use GitHub? If so, you can customize the github section for your user id 
       user = alice
       token = alice-token
 
-Do you prefer terse status messages? 
+Do you prefer terse status messages?
 
     [alias]
       s = status -sb
+
+Do you prefer log message summaries?
+
+    [alias]
+      l = log --graph --oneline
 
 Do you prefer using `most` as a pager? (Get it by doing `brew install most` or `apt-get install most` etc.)
 
@@ -72,7 +92,7 @@ To use better pretty formatting:
 ## Suggestion for branch auto setup merge
 
 We tell git-branch and git-checkout to setup new branches so that git-pull
-will appropriately merge from that remote branch. 
+will appropriately merge from that remote branch.
 
     git config --global branch.autosetupmerge true
 
@@ -96,7 +116,7 @@ Our favorite open source free GUI for Ubuntu is http://cola.tuxfamily.org/
 ## More
 
 For more git config ideas, and for credit for many of the aliases here, please see these excelent resources:
- 
+
   * <https://git.wiki.kernel.org/index.php/Aliases>
   * <http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain>
   * <http://superuser.com/questions/169695/what-are-your-favorite-git-aliases>
