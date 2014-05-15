@@ -20,7 +20,7 @@
   #   * [Corey Haines](http://coreyhaines.com/)
   #   * [Mislav Marohnić](http://mislav.uniqpath.com/)
   #   * [Gary Bernhardt](http://destroyallsoftware.com)
-  
+
   ##
   # One-letter aliases
   ##
@@ -125,11 +125,8 @@
   # log with items appearing in topological order, i.e. descendant commits are shown before their parents.
   lt = log --topo-order
 
-  # log line summary: "YYYY-MM-DD <hash> <abbrev-commit>"
-  ll = log --pretty=format:'%ad %h %s' --abbrev-commit --date=short
-
-  # log line longer summary: a graph, colors, one-line commit messages, and iso dates.
-  lll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue[%cn]%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=iso
+  # log liner - our favorite one-line log that uses a graph, colors, and abbreviations; customize as you like.
+  ll = log --graph --topo-order --abbrev-commit --date=short --decorate --all --boundary --pretty=format:'%Cgreen%ad %Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue[%cn]%Creset'
 
   # ls-files - show information about files in the index and the working tree; like Unix "ls" command.
   ls = ls-files
@@ -328,8 +325,8 @@
   #
   # These are all standard arguments to `git log`.
   #
-  # It’s possible to get valuable insight from history of a project not only 
-  # by viewing individual commits, but by analyzing sets of changes as a whole. 
+  # It’s possible to get valuable insight from history of a project not only
+  # by viewing individual commits, but by analyzing sets of changes as a whole.
   # For instance, git-log-churn compiles stats about which files change the most.
   #
   # For example, to see where work on an app was focused on in the past month:
@@ -337,12 +334,12 @@
   #     $ git churn --since='1 month ago' app/ | tail
   #
   # This can also highlight potential problems with technical debt in a project.
-  # A specific file changing too often is generally a red flag, since it probably 
-  # means the file either needed to be frequently fixed for bugs, or the file 
+  # A specific file changing too often is generally a red flag, since it probably
+  # means the file either needed to be frequently fixed for bugs, or the file
   # holds too much responsibility and should be split into smaller units.
   #
   # Similar methods of history analysis can be employed to see which people were
-  # responsible recently for development of a certain part of the codebase. 
+  # responsible recently for development of a certain part of the codebase.
   #
   # For instance, to see who contributed most to the API part of an application:
   #
@@ -352,7 +349,7 @@
   #    109 Alice Anderson
   #    13 Bob Brown
   #    7 Carol Clark
-  #  
+  #
   churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count\tfile"} {print $1 "\t" $2}' | sort -g
 
 
@@ -396,7 +393,7 @@
 
   # When you're a little worried that the world is coming to an end
   panic = !tar cvf ../git_panic.tar *
-  
+
   # Do everything we can to synchronize all changes
   get = !git pull --rebase && git submodule update --init --recursive
   put = !git commit -am "$1" && git push
@@ -478,7 +475,7 @@
 
   # Execute shell scripts. Git always runs scripts in the top directory.
   # For example "git exec pwd" will always show you the top directory.
-  exec = ! exec 
+  exec = ! exec
 
 
   ### MAINTENANCE ALIASES ###
@@ -487,7 +484,7 @@
   #
   # This command take a long time to run, perhaps even overnight.
   #
-  # It does the equivalent of "git gc --aggressive" 
+  # It does the equivalent of "git gc --aggressive"
   # but done *properly*,  which is to do something like:
   #
   #     git repack -a -d --depth=250 --window=250
