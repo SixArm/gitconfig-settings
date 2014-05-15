@@ -163,3 +163,4 @@ For more git config ideas, and for credit for many of the aliases here, please s
   * [Corey Haines](http://coreyhaines.com/)
   * [Mislav Marohnić](http://mislav.uniqpath.com/)
   * [Gary Bernhardt](http://destroyallsoftware.com)
+  * [Joe Nelson](http://begriffs.com)
