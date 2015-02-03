@@ -20,6 +20,7 @@
   #   * [Corey Haines](http://coreyhaines.com/)
   #   * [Mislav Marohnić](http://mislav.uniqpath.com/)
   #   * [Gary Bernhardt](http://destroyallsoftware.com)
+  #   * [CodeGnome](http://stackoverflow.com/users/1301972/codegnome)
 
   ##
   # One-letter aliases
@@ -273,6 +274,10 @@
   #
   orphans = fsck --full
 
+  # List all blobs by size in bytes.
+  # By [CodeGnome](http://www.codegnome.com/)
+  rev-list-all-objects-sort-by-size = !"git rev-list --all --objects  | awk '{print $1}'| git cat-file --batch-check | fgrep blob | sort -k3nr"
+
 
   ### LOG ALIASES ###
 
@@ -485,7 +490,7 @@
 
   # repacker: repack a repo the way Linus recommends.
   #
-  # This command take a long time to run, perhaps even overnight.
+  # This command takes a long time to run, perhaps even overnight.
   #
   # It does the equivalent of "git gc --aggressive"
   # but done *properly*,  which is to do something like:
@@ -513,6 +518,17 @@
   # us from a window that has very large objects such as binary blobs.
   #
   repacker = repack -a -d -f --depth=300 --window=300 --window-memory=1g
+
+
+  # prune-repacker: prune everything and use an expire time of now.
+  #
+  # This command takes a long time to run, perhaps even overnight.
+  #
+  # This is useful for removing unreachable objects from all places.
+  #
+  # By [CodeGnome](http://www.codegnome.com/)
+  #
+  pruner-repacker = !git prune --expire=now; git reflog expire --expire-unreachable=now --rewrite --all; git repack -a -d -f --depth=300 --window=300 --window-memory=1g; git prune-packed
 
 
   ### ADVANCED ALIASES ###

@@ -1,0 +1,36 @@
+[include]
+	path = ~/.gitconfig.d/alias.txt
+	path = ~/.gitconfig.d/alias-for-cvs.txt
+	path = ~/.gitconfig.d/alias-for-gitk.txt
+	path = ~/.gitconfig.d/alias-for-rails.txt
+	path = ~/.gitconfig.d/alias-for-svn.txt
+	path = ~/.gitconfig.d/apply.txt
+	path = ~/.gitconfig.d/branch.txt
+	path = ~/.gitconfig.d/color.txt
+	path = ~/.gitconfig.d/core.txt
+	path = ~/.gitconfig.d/diff.txt
+	path = ~/.gitconfig.d/github.txt
+	path = ~/.gitconfig.d/merge.txt
+	path = ~/.gitconfig.d/mergetool.txt
+	path = ~/.gitconfig.d/push.txt
+	path = ~/.gitconfig.d/rerere.txt
+	path = ~/.gitconfig.d/user.txt
+
+[user]
+	name = Alice Adams
+	email = alice@example.com
+
+
+[github]
+	user = aliceadams
+	token = ?
+
+[format]
+	pretty = "%H %ci %ce %ae %d %s"
+
+[alias]
+	l = log --graph --oneline
+
+[core]
+	pager = most
+	
