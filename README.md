@@ -7,7 +7,7 @@ For the complete list of aliases, and all the configurations, see the files in t
 
 ## Alias shortcuts
 
-One-letter nicknames to speed up typing:
+One-letter shortcuts speed up typing:
 
     git a = add
     git b = branch
@@ -23,7 +23,7 @@ One-letter nicknames to speed up typing:
     git s = status
     git w = whatchanged
 
-A few of our favorite nicknames with options:
+One-letter shortcuts often have shortcuts for popular options:
 
     git ap = add --patch
     git ci = commit --interactive
