@@ -1,4 +1,4 @@
-# SixArm.com » Git » <br> gitconfig files
+# Git » <br> gitconfig files
 
 Git configuration for alias commands, branch management, syntax coloring, merge strategies, and more.
 
