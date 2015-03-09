@@ -311,8 +311,8 @@
   # Show the recent day
   log-day = log --since yesterday
 
-  # Show the recent day for your own user, suitable for a daily standup meeting.
-  log-standup = !git log --since yesterday --author `git config user.email` --pretty=short
+  # Summarize your own changes since yesterday, suitable for a daily standup meeting.
+  log-standup = !git log --since yesterday --pretty=short --author `git config user.email`
 
   # churn: show log of files that have many changes
   #

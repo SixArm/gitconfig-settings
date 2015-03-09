@@ -2,9 +2,9 @@
 
 Git configuration for aliases, branches, merges, syntax coloring, merges, and more.
 
-## Aliases
+## Alias nicknames:
 
-We use a bunch of nicknames to speed up typing:
+One-letter nicknames to speed up typing:
 
     git a = add
     git b = branch
@@ -20,31 +20,41 @@ We use a bunch of nicknames to speed up typing:
     git s = status
     git w = whatchanged
 
-A few of our favorites:
+A few of our favorite nicknames with options:
 
     git ap = add --patch
     git ci = commit --interactive
     git ds = diff --staged
     git lg = log --graph
 
+
+## Alias commands
+
 A few of our favorite commands:
 
-    # Get all updates to our project
+Get all updates to our project:
+
     git get = !git pull --rebase && git submodule update --init --recursive
 
-    # Rebase interactive on our unpushed commits
+Rebase interactive on our unpushed commits:
+
     git rbi = !git rebase -i @{u}
 
-    # Show the recent day for your own user, suitable for a daily standup meeting.
-    log-standup = !git log --since yesterday --author `git config user.email` --pretty=short
+Summarize your own changes since yesterday, suitable for a daily standup meeting:
 
-    # Find text in any commit ever
+    log-standup = !git log --since yesterday --pretty=short --author `git config user.email`
+
+Find text in any commit ever:
+
     git grep-all = !"git rev-list --all | xargs git grep '$1'"
 
-    # Delete all branches that have already been merged into master.
+Delete all branches that have already been merged into master:
+
     git master-cleanse = !"git checkout master && git branch --merged | xargs git branch -d"
 
-    # Repack the way Linus recommends (also see git pruner-repacker)
+
+Repack the way Linus recommends, and also see git pruner-repacker:
+
     git repacker = repack -a -d -f --depth=300 --window=300 --window-memory=1g
 
 
