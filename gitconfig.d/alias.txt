@@ -32,8 +32,8 @@
   # branch - list, create, or delete branches.
   b = branch
 
-  # commit - record changes to the repostiory with a message.
-  c = commit -m
+  # commit - record changes to the repostiory.
+  c = commit
 
   # diff - show changes between commits, commit and working tree, etc.
   d = diff
@@ -79,10 +79,10 @@
   au = add --update .
 
   # add by patch then commit - looks at each change, and asks if we want to put it in the repo, then commits.
-  ac = !git add -p; git commit
+  ac = !git add --patch; git commit
 
   # add by patch - looks at each change, and asks if we want to put it in the repo.
-  ap = add -p
+  ap = add --patch
 
   # branch - list, create, or delete branches [same as "b"]
   br = branch
@@ -96,8 +96,11 @@
   # commit - amend the tip of the current branch rather than creating a new commit.
   ca = commit --amend
 
-  # commit with --verbose and with the given <msg> as the commit message.
-  ci = commit -v -m
+  # commit interacively
+  ci = commit --interactive
+
+  # commit with a message
+  cm = commit --message
 
   # checkout - update the working tree to match a branch or paths. [same as "o" for "out"]
   co = checkout
@@ -519,8 +522,7 @@
   #
   repacker = repack -a -d -f --depth=300 --window=300 --window-memory=1g
 
-
-  # prune-repacker: prune everything and use an expire time of now.
+  # pruner-repacker: prune everything then repack everything.
   #
   # This command takes a long time to run, perhaps even overnight.
   #

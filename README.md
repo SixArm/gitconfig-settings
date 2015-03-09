@@ -1,6 +1,51 @@
-# Git » <br> gitconfig files
+# Git » gitconfig files
 
-Git configuration for alias commands, branch management, syntax coloring, merge strategies, and more.
+Git configuration for aliases, branches, merges, syntax coloring, merges, and more.
+
+## Aliases
+
+We use a bunch of nicknames to speed up typing:
+
+    git a = add
+    git b = branch
+    git c = commit
+    git d = diff
+    git f = fetch
+    git g = grep
+    git l = log
+    git m = merge
+    git o = checkout
+    git p = pull
+    git r = remote
+    git s = status
+    git w = whatchanged
+
+A few of our favorites:
+
+    git ap = add --patch
+    git ci = commit --interactive
+    git ds = diff --staged
+    git lg = log --graph
+
+A few of our favorite commands:
+
+    # Get all updates to our project
+    git get = !git pull --rebase && git submodule update --init --recursive
+
+    # Rebase interactive on our unpushed commits
+    git rbi = !git rebase -i @{u}
+
+    # Show the recent day for your own user, suitable for a daily standup meeting.
+    log-standup = !git log --since yesterday --author `git config user.email` --pretty=short
+
+    # Find text in any commit ever
+    git grep-all = !"git rev-list --all | xargs git grep '$1'"
+
+    # Delete all branches that have already been merged into master.
+    git master-cleanse = !"git checkout master && git branch --merged | xargs git branch -d"
+
+    # Repack the way Linus recommends (also see git pruner-repacker)
+    git repacker = repack -a -d -f --depth=300 --window=300 --window-memory=1g
 
 
 ## Setup
