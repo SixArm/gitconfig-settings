@@ -48,14 +48,41 @@ Find text in any commit ever:
 
     git grep-all = !"git rev-list --all | xargs git grep '$1'"
 
-Delete all branches that have already been merged into master:
-
-    git master-cleanse = !"git checkout master && git branch --merged | xargs git branch -d"
 
 
-Repack the way Linus recommends, and also see git pruner-repacker:
 
-    git repacker = repack -a -d -f --depth=300 --window=300 --window-memory=1g
+## Workflow aliases
+
+Publish the current branch by pushing and tracking:
+
+    git publish = "!git push -u origin $(git branch-name)"
+
+Unpublish the current branch by deleting the remote branch:
+
+    git unpublish = "!git push origin :$(git branch-name)"
+
+
+
+## Optimization aliases
+
+Delete all local branches that have already been merged into the local master:
+
+    git master-cleanse-local = !"git checkout master && git branch --merged | xargs git branch -d"
+
+Delete all remote branches that have already been merged into the remote master:
+
+    git master-cleanse-remote = !"git branch -r --merged origin/master |
+      sed 's/ *origin\///' | grep -v '^master$' |
+      xargs -I% git push origin :% 2>&1 |
+      grep --colour=never 'deleted'"
+
+Clean everything that is unreachable:
+
+    git pruner = !git prune --expire=now; git reflog expire --expire-unreachable=now --rewrite --all
+
+Repack the way Linus recommends:
+
+    git repacker = !git repack -a -d -f --depth=300 --window=300 --window-memory=1g
 
 
 ## Setup
@@ -219,3 +246,4 @@ For more git config ideas, and for credit for many of the aliases here, please s
   * [Mislav Marohnić](http://mislav.uniqpath.com/)
   * [Gary Bernhardt](http://destroyallsoftware.com)
   * [Joe Nelson](http://begriffs.com)
+  * [Rob Miller](https://github.com/robmiller)
