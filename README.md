@@ -2,7 +2,10 @@
 
 Git configuration for aliases, branches, merges, syntax coloring, merges, and more.
 
-## Alias nicknames:
+For the complete list of aliases, and all the configurations, see the files in the `gitconfig.d` directory.
+
+
+## Alias shortcuts
 
 One-letter nicknames to speed up typing:
 
@@ -30,7 +33,7 @@ A few of our favorite nicknames with options:
 
 ## Alias commands
 
-A few of our favorite commands:
+Here are some of our favorites; for the complete list, see `gitconfig.d`.
 
 Get all updates to our project:
 
@@ -44,7 +47,7 @@ Summarize your own changes since yesterday, suitable for a daily standup meeting
 
     log-standup = !git log --since yesterday --pretty=short --author `git config user.email`
 
-Find text in any commit ever:
+Find any text in any commit ever:
 
     git grep-all = !"git rev-list --all | xargs git grep '$1'"
 
@@ -52,6 +55,8 @@ Find text in any commit ever:
 
 
 ## Workflow aliases
+
+Here are some of our favorites; for the complete list, see `gitconfig.d`.
 
 Publish the current branch by pushing and tracking:
 
@@ -63,20 +68,16 @@ Unpublish the current branch by deleting the remote branch:
 
 
 
-## Optimization aliases
+## Cleaning aliases
 
-Delete all local branches that have already been merged into the local master:
+Here are some of our favorites; for the complete list, see `gitconfig.d`.
 
-    git master-cleanse-local = !"git checkout master && git branch --merged | xargs git branch -d"
+Delete all branches that have been merged into master:
 
-Delete all remote branches that have already been merged into the remote master:
+    git master-cleanse = !"git checkout master && git branch --merged | xargs git branch -d; git branch -r --merged origin/master | sed 's/ *origin\///' | grep -v '^master$' | xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
 
-    git master-cleanse-remote = !"git branch -r --merged origin/master |
-      sed 's/ *origin\///' | grep -v '^master$' |
-      xargs -I% git push origin :% 2>&1 |
-      grep --colour=never 'deleted'"
 
-Clean everything that is unreachable:
+Prune stale items:
 
     git pruner = !git prune --expire=now; git reflog expire --expire-unreachable=now --rewrite --all
 
