@@ -2,7 +2,7 @@
 
 Git configuration for aliases, branches, merges, syntax coloring, merges, and more.
 
-For the complete list of aliases, and all the configurations, see the files in the `gitconfig.d` directory.
+For the complete list of aliases, and all the configurations, please see the files in the `gitconfig.d` directory.
 
 
 ## Alias shortcuts
@@ -33,7 +33,7 @@ One-letter shortcuts often have shortcuts for popular options:
 
 ## Alias commands
 
-Here are some of our favorites; for the complete list, see `gitconfig.d`.
+Here are some of our favorites. For more, see `gitconfig.d/alias*`.
 
 Get all updates to our project:
 
@@ -52,11 +52,26 @@ Find any text in any commit ever:
     git grep-all = !"git rev-list --all | xargs git grep '$1'"
 
 
+## Feature flow aliases
+
+Here are aliases suitable for a simple feature flow. For details, see `gitconfig.d/alias-for-feature-flow.txt`.
+
+Create a new feature branch:
+
+    git feature-start = '!branch=$1; git checkout master; git pull; git checkout -b "$branch" master'
+
+Update the feature branch:
+
+    git feature-update = '!branch=$(git branch-name); git checkout master; git pull; git checkout "$branch"; git rebase master'
+
+Share the feature branch:
+
+    git feature-share = '!branch=$(git branch-name); git push -u origin "$branch"'
 
 
-## Workflow aliases
+## Publishing aliases
 
-Here are some of our favorites; for the complete list, see `gitconfig.d`.
+Here are a couple our favorites; for the complete list, see `gitconfig.d`.
 
 Publish the current branch by pushing and tracking:
 
@@ -102,6 +117,7 @@ Edit your `~/.gitconfig` file to include any of the files you want to use:
     [include]
        path = ~/.gitconfig.d/alias.txt
        path = ~/.gitconfig.d/alias-for-cvs.txt
+       path = ~/.gitconfig.d/alias-for-feature-flow.txt
        path = ~/.gitconfig.d/alias-for-gitk.txt
        path = ~/.gitconfig.d/alias-for-rails.txt
        path = ~/.gitconfig.d/alias-for-svn.txt

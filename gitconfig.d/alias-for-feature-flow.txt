@@ -1,0 +1,59 @@
+##
+# Git aliases suitable for features.
+#
+# These aliases are simple starting points for a simple feature flow.
+# You can adjust these as you like, to suit your project and/or team.
+#
+##
+
+##
+# Create a new feature branch:
+#
+#   1. Update the master branch
+#   2. Create a new branch with your feature name and based on the master branch
+#
+# Example:
+#
+#     git feature-start my-idea-here
+#
+# If you use any kind of testing framework, or test driven development,
+# the it is wise to test your feature immediately after running this,
+# to ensure that your branch starts with all the tests succeeding.
+##
+
+git feature-start = '!branch=$1; git checkout master; git pull; git checkout -b "$branch" master'
+
+##
+# Update the feature branch:
+#
+#   1. Update the master branch
+#   2. Update the feature branch with any changes from the master branch
+#
+# Example:
+#
+#     git feature-update
+#
+# If you use any kind of testing framework, or test driven development,
+# the it is wise to test your feature immediately after running this,
+# to ensure that any available updates are successfully integrated.
+##
+
+git feature-update = '!branch=$(git branch-name); git checkout master; git pull; git checkout "$branch"; git rebase master'
+
+##
+# Share the feature branch:
+#
+#   1. Push the feature branch to the origin.
+#   2. Set the upstream tracking.
+#
+# Example:
+#
+#     git feature-share
+#
+# If you use a sharing site such a GitHub, then this command
+# will make your branch visible to your project collaborators.
+# Many teams share branches before they are fully ready, to help
+# the team provide feedback on the work-in-progress.
+##
+
+git feature-share = '!branch=$(git branch-name); git push -u origin "$branch"'
