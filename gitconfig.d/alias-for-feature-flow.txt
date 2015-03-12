@@ -1,3 +1,5 @@
+[alias]
+
 ##
 # Git aliases suitable for features.
 #
@@ -21,7 +23,7 @@
 # to ensure that your branch starts with all the tests succeeding.
 ##
 
-git feature-start = '!branch=$1; git checkout master; git pull; git checkout -b "$branch" master'
+feature-start = "!F(){ branch=$1; git checkout master; git pull; git checkout -b "$branch" master; };f"
 
 ##
 # Update the feature branch:
@@ -38,17 +40,17 @@ git feature-start = '!branch=$1; git checkout master; git pull; git checkout -b 
 # to ensure that any available updates are successfully integrated.
 ##
 
-git feature-update = '!branch=$(git branch-name); git checkout master; git pull; git checkout "$branch"; git rebase master'
+feature-update = "!f(){ branch=$(git branch-name); git checkout master; git pull; git checkout "$branch"; git rebase master; };f"
 
 ##
-# Share the feature branch:
+# Push the feature branch:
 #
 #   1. Push the feature branch to the origin.
 #   2. Set the upstream tracking.
 #
 # Example:
 #
-#     git feature-share
+#     git feature-push
 #
 # If you use a sharing site such a GitHub, then this command
 # will make your branch visible to your project collaborators.
@@ -56,4 +58,4 @@ git feature-update = '!branch=$(git branch-name); git checkout master; git pull;
 # the team provide feedback on the work-in-progress.
 ##
 
-git feature-share = '!branch=$(git branch-name); git push -u origin "$branch"'
+feature-push = "!f(){ branch=$(git branch-name); git push -u origin "$branch"; };f"
