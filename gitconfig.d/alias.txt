@@ -503,10 +503,10 @@
   master-cleanse = !git master-cleanse-local; git master-cleanse-remote
 
   # Delete all local branches that have been merged into the local master branch.
-  master-cleanse-local = !"git checkout master && git branch --merged | xargs git branch -d"
+  master-cleanse-local = "!git checkout master && git branch --merged | xargs git branch -d"
 
   # Delete all remote branches that have been merged into the remote master branch.
-  master-cleanse-remote = !"git branch -r --merged origin/master | sed 's/ *origin\///' | grep -v '^master$' | xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
+  master-cleanse-remote = "!git branch -r --merged origin/master | sed 's# *origin/##' | grep -v '^master$' xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
 
   # Publish the current branch by pushing it to the remote "origin",
   # and setting the current branch to track the upstream branch.
