@@ -41,7 +41,7 @@
   d = diff
 
   # edit - pipe the diff output to your editor of choice.
-  e = !git diff | $EDITOR
+  e = !"git diff | $EDITOR"
 
   # fetch - download objects and refs from another repository.
   f = fetch
@@ -81,7 +81,7 @@
   au = add --update .
 
   # add by patch then commit - looks at each change, and asks if we want to put it in the repo, then commits.
-  ac = !git add --patch; git commit
+  ac = !"git add --patch; git commit"
 
   # add by patch - looks at each change, and asks if we want to put it in the repo.
   ap = add --patch
@@ -209,7 +209,7 @@
   #     3400455 - foo
   #     5dae0a0 - whatever
   #
-  rbi = !git rebase -i @{u}
+  rbi = !"git rebase -i @{u}"
 
   # reflog - reference log that manages when tips of branches are updated.
   rl = reflog
@@ -248,13 +248,13 @@
   ### INSPECTION ALIASES ###
 
   # Show our defined aliases
-  aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+  aliases = !"git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'"
 
   # Show our tags
   tags = tag -n1 -l
 
   # Diffs
-  diff-all = '!for name in $(git diff --name-only $1); do git difftool $1 $name & done'
+  diff-all = !"for name in $(git diff --name-only $1); do git difftool $1 $name & done"
   diff-changes = diff --name-status -r
   diff-stat = diff --stat -b -r
   diff-staged = diff --cached
@@ -270,19 +270,19 @@
   # Given a merge commit, find the span of commits that exist(ed).
   # Not so useful in itself, but used by other aliases.
   # Thanks to Rob Miller for the merge-span-* aliaes.
-  merge-span = "!f() { echo $(git log -1 $2 --merges --pretty=format:%P | cut -d' ' -f1)$1$(git log -1 $2 --merges --pretty=format:%P | cut -d' ' -f2); }; f"
+  merge-span = !"f() { echo $(git log -1 $2 --merges --pretty=format:%P | cut -d' ' -f1)$1$(git log -1 $2 --merges --pretty=format:%P | cut -d' ' -f2); }; f"
 
   # Find the commits that were introduced by a merge
   merge-span-log = "!git log `git merge-span .. $1`"
 
   # Show the changes that were introduced by a merge
-  merge-span-diff = "!git diff `git merge-span ... $1`"
+  merge-span-diff = !"git diff `git merge-span ... $1`"
 
   # Show the changes that were introduced by a merge, in your difftool
-  merge-span-difftool = "!git difftool `git merge-span ... $1`"
+  merge-span-difftool = !"git difftool `git merge-span ... $1`"
 
   # Interactively rebase all the commits on the current branch
-  rebase-branch = "!git rebase -i `git merge-base master HEAD`"
+  rebase-branch = !"git rebase -i `git merge-base master HEAD`"
 
   # Sort by date for branches; can be useful for spring cleaning
   refs-by-date = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short)'
@@ -319,7 +319,7 @@
   log-local = log --date=local
 
   # Show the log for my own user email
-  log-me = !git log --author `git config user.email`
+  log-me = !git log --author $(git config user.email)
 
   # Show log as a graph
   log-graph = log --graph --oneline --decorate
@@ -331,7 +331,7 @@
   log-day = log --since yesterday
 
   # Summarize your own changes since yesterday, suitable for a daily standup meeting.
-  log-standup = !git log --since yesterday --pretty=short --author `git config user.email`
+  log-standup = !git log --since yesterday --pretty=short --author $(git config user.email)
 
   # churn: show log of files that have many changes
   #
@@ -444,8 +444,8 @@
 
   # Editing and adding conflicted files: when we get many merge conflicts
   # and want to quickly solve them using an editor, then add the  files.
-  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; $EDITOR `f`"
-  add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+  edit-unmerged = !"f() { git ls-files --unmerged | cut -f2 | sort -u ; }; $EDITOR `f`"
+  add-unmerged = !"f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
   # Ours & Theirs - easy merging when you know which files you want
   #
@@ -461,8 +461,8 @@
   # N.b. the function is there as hack to get $@ doing
   # what you would expect it to as a shell user.
   #
-  ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
-  theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+  ours   = !"f() { git checkout --ours $@ && git add $@; }; f"
+  theirs = !"f() { git checkout --theirs $@ && git add $@; }; f"
 
   # Work In Progress: from https://gist.github.com/492227 and VonC on stackoverflow.
   # This enables a quick way to add all new and modified files to the index,
@@ -497,7 +497,7 @@
   #
   assume   = update-index --assume-unchanged
   unassume = update-index --no-assume-unchanged
-  assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
+  assumed  = !"git ls-files -v | grep ^h | cut -c 3-"
 
   # Delete all branches that have already been merged into the master branch.
   master-cleanse = !git master-cleanse-local; git master-cleanse-remote
@@ -506,15 +506,15 @@
   master-cleanse-local = "!git checkout master && git branch --merged | xargs git branch -d"
 
   # Delete all remote branches that have been merged into the remote master branch.
-  master-cleanse-remote = "!git branch -r --merged origin/master | sed 's# *origin/##' | grep -v '^master$' xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
+  master-cleanse-remote = !"git branch -r --merged origin/master | sed 's# *origin/##' | grep -v '^master$' xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
 
   # Publish the current branch by pushing it to the remote "origin",
   # and setting the current branch to track the upstream branch.
-  publish = "!git push -u origin $(git branch-name)"
+  publish = !"git push -u origin $(git branch-name)"
 
   # Unpublish the current branch by deleting the
   # remote version of the current branch.
-  unpublish = "!git push origin :$(git branch-name)"
+  unpublish = !"git push origin :$(git branch-name)"
 
   # Delete a branch name, then create the same branch name based on master —
   # useful if you have, for example, a development branch and master branch
@@ -522,13 +522,13 @@
   #
   # Calls the `publish` and `unpublish` aliases.
   #
-  reincarnate = "!f() { [[ -n $@ ]] && git checkout \"$@\" && git unpublish && git checkout master && git branch -D \"$@\" && git checkout -b \"$@\" && git publish; }; f"
+  reincarnate = !"f() { [[ -n $@ ]] && git checkout \"$@\" && git unpublish && git checkout master && git branch -D \"$@\" && git checkout -b \"$@\" && git publish; }; f"
 
 
   ### SHELL SCRIPTING ALIASES ###
 
   # Get the current branch name
-  branch-name = "!git rev-parse --abbrev-ref HEAD"
+  branch-name = !"git rev-parse --abbrev-ref HEAD"
 
   # Get the top level directory, regardless of what subdirectory we're in.
   root = ! pwd
@@ -548,7 +548,7 @@
   #
   # By [CodeGnome](http://www.codegnome.com/)
   #
-  pruner = !git prune --expire=now; git reflog expire --expire-unreachable=now --rewrite --all
+  pruner = !"git prune --expire=now; git reflog expire --expire-unreachable=now --rewrite --all"
 
   # repacker: repack a repo the way Linus recommends.
   #
@@ -604,7 +604,7 @@
   #
   # Example: search commits for "foobar", print full diff of commit with 1 line context
   #     git searchcommits foobar --pickaxe-all -U1 src/lib
-  searchcommits = "!f() { query=\"$1\"; shift; git log -S\"$query\" \"$@\"; }; f \"$@\""
+  searchcommits = !"f() { query=\"$1\"; shift; git log -S\"$query\" \"$@\"; }; f \"$@\""
 
   # A 'debug' alias to help debugging builtins: when debugging builtins,
   # we use gdb to analyze the runtime state. However, we have to disable
@@ -629,12 +629,12 @@
   prune-all = !git remote | xargs -n 1 git remote prune
 
   # Thanks to cody cutrer
-  cherry-pick-merge = "!bash -c 'git cherry-pick -n -m 1 $0 && \
+  cherry-pick-merge = !"bash -c 'git cherry-pick -n -m 1 $0 && \
     git log -1 --pretty=%P $0 | cut -b 42- > .git/MERGE_HEAD && \
     git commit -v'"
 
   # Thanks to jtolds on stackoverflow
-  remote-ref = "!bash -c ' \
+  remote-ref = !"bash -c ' \
     local_ref=$(git symbolic-ref HEAD); \
     local_name=${local_ref##refs/heads/}; \
     remote=$(git config branch.\"#local_name\".remote || echo origin); \
@@ -649,4 +649,4 @@
   # This produces output that can be displayed using dotty, for example:
   #   $ git graphviz HEAD~100..HEAD~60 | dotty /dev/stdin
   #   $ git graphviz --first-parent master | dotty /dev/stdin
-  graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
+  graphviz = !"f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
