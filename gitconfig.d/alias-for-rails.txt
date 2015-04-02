@@ -1,4 +1,4 @@
 [alias]
   # Do everything we can to synchronize all changes for a Ruby On Rails app.
   # We like using rebase (instead of merge), bundle for gems, and rake db:migrate
-  get-rails = !"git pull --rebase; git submodule update --init --recursive; bundle check || bundle install; bundle exec rake db:migrate"
+  get-rails = !"git pull --rebase; git submodule update --init --recursive; bundle check || bundle install; bundle exec rake db:migrate; bundle exec rake db:test:prepare"
