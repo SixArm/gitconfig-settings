@@ -1,4 +1,4 @@
-# Git » gitconfig files
+﻿# Git » gitconfig files
 
 Git configuration files.
 
@@ -217,7 +217,7 @@ If we didn't do this, we would have to add --track to our branch command or manu
 
 ## Suggestion for tab completion
 
-To install git tab completion, we go to the git soure code directory then run:
+To install git tab completion, we go to the git source code directory then run:
 
     echo "source ./contrib/completion/git-completion.bash" >> /etc/bash.bashrc
 
