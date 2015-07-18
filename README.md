@@ -25,12 +25,12 @@ If you prefer to customize which files to include, then you can choose specific 
 
 If you prefer to have full control of these files, then you can copy them wherever you like on your system, and edit them as you like. 
 
-If your system is Apple OSX, and you want to use your system's keychain credential manager, then add this:
+If your system is OSX, and you want to enable the keychain credential manager, then add this:
 
     [include]
        path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx
 
-If your system is Microsoft Windows, and you want to use your system's credential manager, then add this:
+If your system is Windows, and you want to enable the system credential manager, then add this:
 
     [include]
        path = sixarm_git_gitconfig/gitconfig.d/specific-to-windows.txt
