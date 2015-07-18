@@ -6,11 +6,6 @@ This has git aliases, branches, merges, syntax coloring, merges, credentials, an
 
 For the complete list of aliases, and all the configurations, please see the files in the `gitconfig.d` directory.
 
-There are two files that are specific to the operating system; use the one that's right for your system.
-
-  * specific-to-osx
-  * specific-to-windows
-
 ## Install
 
 Clone:
@@ -29,6 +24,16 @@ If you prefer to customize which files to include, then you can choose specific 
        path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx.txt
 
 If you prefer to have full control of these files, then you can copy them wherever you like on your system, and edit them as you like. 
+
+If your system is Apple OSX, and you want to use your system's keychain credential manager, then add this:
+
+    [include]
+       path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx
+
+If your system is Microsoft Windows, and you want to use your system's credential manager, then add this:
+
+    [include]
+       path = sixarm_git_gitconfig/gitconfig.d/specific-to-windows.txt
 
 
 ## Alias shortcuts
