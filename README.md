@@ -38,7 +38,7 @@ If you want full control, then copy any of these files as edit as you like.
 
 ## Alias shortcuts
 
-One-letter shortcuts speed up typing:
+One letter shortcuts are for fast typing:
 
     a = add
     b = branch
@@ -54,38 +54,73 @@ One-letter shortcuts speed up typing:
     s = status
     w = whatchanged
 
-One-letter shortcuts often have shortcuts for popular options:
+There are many two letter shortcuts for popular commands and options, such as these:
 
     ap = add --patch
+    be = branch --edit-description
     ci = commit --interactive
     ds = diff --staged
     lg = log --graph
+	ss = status --short
+
+To see the complete list, please see the files in the `gitconfig.d` directory.
 
 
-## Alias commands
+## Favorites
 
-Here are some of our favorites. For more, see `gitconfig.d/alias*`.
+Here are some of our alias favorites that we use often:
 
-Get all updates to our project:
+Get everything new:
 
     get = !git pull --rebase && git submodule update --init --recursive
 
 Rebase interactive on our unpushed commits:
 
-    rbi = !git rebase -i @{u}
+    rbi = !git rebase --interactive @{u}
 
-Summarize your own changes since yesterday, suitable for a daily standup meeting:
+Summarize changes for a daily standup meeting:
 
     log-standup = !git log --since yesterday --pretty=short --author `git config user.email`
 
-Find any text in any commit ever:
+Find text in any commit ever:
 
     grep-all = !"git rev-list --all | xargs git grep '$1'"
 
 
-## Feature flow aliases
+## Publishing
 
-Here are aliases suitable for a simple feature flow. For details, see `gitconfig.d/alias-for-feature-flow.txt`.
+Here are a couple our favorites for publishing. For the complete list, see `gitconfig.d/alias.txt`.
+
+Publish the current branch by pushing and tracking:
+
+    publish = "!git push -u origin $(git branch-name)"
+
+Unpublish the current branch by deleting the remote branch:
+
+    unpublish = "!git push origin :$(git branch-name)"
+
+
+
+## Cleaning
+
+Here are some of our favorites; for the complete list, see `gitconfig.d`.
+
+Prune stale items:
+
+    pruner = !git prune --expire=now; git reflog expire --expire-unreachable=now --rewrite --all
+
+Repack the way Linus recommends:
+
+    repacker = !git repack -a -d -f --depth=300 --window=300 --window-memory=1g
+
+Delete all branches that have been merged into master:
+
+    master-cleanse = !"git checkout master && git branch --merged | xargs git branch -d; git branch -r --merged origin/master | sed 's/ *origin\///' | grep -v '^master$' | xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
+
+
+## Feature Flow 
+
+Alias configuration for our feature flow. For details, see `gitconfig.d/alias-for-feature-flow.txt`.
 
 Create a new feature branch:
 
@@ -99,38 +134,7 @@ Share the feature branch:
 
     feature-share = '!branch=$(git branch-name); git push -u origin "$branch"'
 
-
-## Publishing aliases
-
-Here are a couple our favorites; for the complete list, see `gitconfig.d`.
-
-Publish the current branch by pushing and tracking:
-
-    publish = "!git push -u origin $(git branch-name)"
-
-Unpublish the current branch by deleting the remote branch:
-
-    unpublish = "!git push origin :$(git branch-name)"
-
-
-
-## Cleaning aliases
-
-Here are some of our favorites; for the complete list, see `gitconfig.d`.
-
-Delete all branches that have been merged into master:
-
-    master-cleanse = !"git checkout master && git branch --merged | xargs git branch -d; git branch -r --merged origin/master | sed 's/ *origin\///' | grep -v '^master$' | xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
-
-
-Prune stale items:
-
-    pruner = !git prune --expire=now; git reflog expire --expire-unreachable=now --rewrite --all
-
-Repack the way Linus recommends:
-
-    repacker = !git repack -a -d -f --depth=300 --window=300 --window-memory=1g
-
+If your team uses a different feature flow, you may want to skip including these aliases, or you may want to edit these aliases to match your team's feature flow.
 
 
 ## User personalization
