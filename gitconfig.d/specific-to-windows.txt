@@ -1,0 +1,6 @@
+# Enable git to use the Microsoft Windows Credientials to store username and password,
+# and to retrieve the passphrase to your private ssh key from the keychain.
+#
+# Requirements: Microsoft Windows, git >= 1.7.10.
+#
+git config --global credential.helper wincred

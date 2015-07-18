@@ -1,0 +1,8 @@
+# Enable git to use the Apple OSX Keychain.app to store username and password,
+# and to retrieve the passphrase to your private ssh key from the keychain.
+#
+# Requirements: Apple OSX, git >= 1.7.10.
+#
+git config --global credential.helper osxkeychain
+
+
