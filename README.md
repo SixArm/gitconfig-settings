@@ -1,8 +1,34 @@
 # Git » gitconfig files
 
-Git configuration for aliases, branches, merges, syntax coloring, merges, and more.
+Git configuration files.
+
+This has git aliases, branches, merges, syntax coloring, merges, credentials, and more.
 
 For the complete list of aliases, and all the configurations, please see the files in the `gitconfig.d` directory.
+
+There are two files that are specific to the operating system; use the one that's right for your system.
+
+  * specific-to-osx
+  * specific-to-windows
+
+## Install
+
+Clone:
+
+    git clone https://github.com/SixArm/sixarm_git_gitconfig.git
+
+If you already have a `.gitconfig` file and you want to include all these files, then add this to your `.gitconfig` file:
+
+    [include]
+       path = sixarm_git_gitconfig/gitconfg
+
+If you prefer to customize which files to include, you can choose specific files, for example:
+
+    [include]
+       path = sixarm_git_gitconfig/gitconfig.d/alias-for-feature-flow.txt
+       path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx.txt
+
+If you prefer to have full control of these files, you can copy them wherever you like on your system, and edit them as you like. 
 
 
 ## Alias shortcuts
@@ -100,38 +126,6 @@ Repack the way Linus recommends:
 
     git repacker = !git repack -a -d -f --depth=300 --window=300 --window-memory=1g
 
-
-## Setup
-
-Get these files:
-
-    git clone https://github.com/SixArm/sixarm_git_gitconfig.git
-
-Copy these files wherever you want to keep them, such as:
-
-    mkdir ~/.gitconfig.d
-    cp sixarm_git_gitconfig/gitconfig.d/* ~/.gitconfig.d/
-
-Edit your `~/.gitconfig` file to include any of the files you want to use:
-
-    [include]
-       path = ~/.gitconfig.d/alias.txt
-       path = ~/.gitconfig.d/alias-for-cvs.txt
-       path = ~/.gitconfig.d/alias-for-feature-flow.txt
-       path = ~/.gitconfig.d/alias-for-gitk.txt
-       path = ~/.gitconfig.d/alias-for-rails.txt
-       path = ~/.gitconfig.d/alias-for-svn.txt
-       path = ~/.gitconfig.d/apply.txt
-       path = ~/.gitconfig.d/branch.txt
-       path = ~/.gitconfig.d/color.txt
-       path = ~/.gitconfig.d/core.txt
-       path = ~/.gitconfig.d/diff.txt
-       path = ~/.gitconfig.d/github.txt
-       path = ~/.gitconfig.d/merge.txt
-       path = ~/.gitconfig.d/mergetool.txt
-       path = ~/.gitconfig.d/push.txt
-       path = ~/.gitconfig.d/rerere.txt
-       path = ~/.gitconfig.d/user.txt
 
 
 ## User personalization
