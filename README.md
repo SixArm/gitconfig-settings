@@ -40,26 +40,26 @@ If you want full control, then copy any of these files as edit as you like.
 
 One-letter shortcuts speed up typing:
 
-    git a = add
-    git b = branch
-    git c = commit
-    git d = diff
-    git f = fetch
-    git g = grep
-    git l = log
-    git m = merge
-    git o = checkout
-    git p = pull
-    git r = remote
-    git s = status
-    git w = whatchanged
+    a = add
+    b = branch
+    c = commit
+    d = diff
+    f = fetch
+    g = grep
+    l = log
+    m = merge
+    o = checkout
+    p = pull
+    r = remote
+    s = status
+    w = whatchanged
 
 One-letter shortcuts often have shortcuts for popular options:
 
-    git ap = add --patch
-    git ci = commit --interactive
-    git ds = diff --staged
-    git lg = log --graph
+    ap = add --patch
+    ci = commit --interactive
+    ds = diff --staged
+    lg = log --graph
 
 
 ## Alias commands
@@ -68,11 +68,11 @@ Here are some of our favorites. For more, see `gitconfig.d/alias*`.
 
 Get all updates to our project:
 
-    git get = !git pull --rebase && git submodule update --init --recursive
+    get = !git pull --rebase && git submodule update --init --recursive
 
 Rebase interactive on our unpushed commits:
 
-    git rbi = !git rebase -i @{u}
+    rbi = !git rebase -i @{u}
 
 Summarize your own changes since yesterday, suitable for a daily standup meeting:
 
@@ -80,7 +80,7 @@ Summarize your own changes since yesterday, suitable for a daily standup meeting
 
 Find any text in any commit ever:
 
-    git grep-all = !"git rev-list --all | xargs git grep '$1'"
+    grep-all = !"git rev-list --all | xargs git grep '$1'"
 
 
 ## Feature flow aliases
@@ -89,15 +89,15 @@ Here are aliases suitable for a simple feature flow. For details, see `gitconfig
 
 Create a new feature branch:
 
-    git feature-start = '!branch=$1; git checkout master; git pull; git checkout -b "$branch" master'
+    feature-start = '!branch=$1; git checkout master; git pull; git checkout -b "$branch" master'
 
 Update the feature branch:
 
-    git feature-update = '!branch=$(git branch-name); git checkout master; git pull; git checkout "$branch"; git rebase master'
+    feature-update = '!branch=$(git branch-name); git checkout master; git pull; git checkout "$branch"; git rebase master'
 
 Share the feature branch:
 
-    git feature-share = '!branch=$(git branch-name); git push -u origin "$branch"'
+    feature-share = '!branch=$(git branch-name); git push -u origin "$branch"'
 
 
 ## Publishing aliases
@@ -106,11 +106,11 @@ Here are a couple our favorites; for the complete list, see `gitconfig.d`.
 
 Publish the current branch by pushing and tracking:
 
-    git publish = "!git push -u origin $(git branch-name)"
+    publish = "!git push -u origin $(git branch-name)"
 
 Unpublish the current branch by deleting the remote branch:
 
-    git unpublish = "!git push origin :$(git branch-name)"
+    unpublish = "!git push origin :$(git branch-name)"
 
 
 
@@ -120,16 +120,16 @@ Here are some of our favorites; for the complete list, see `gitconfig.d`.
 
 Delete all branches that have been merged into master:
 
-    git master-cleanse = !"git checkout master && git branch --merged | xargs git branch -d; git branch -r --merged origin/master | sed 's/ *origin\///' | grep -v '^master$' | xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
+    master-cleanse = !"git checkout master && git branch --merged | xargs git branch -d; git branch -r --merged origin/master | sed 's/ *origin\///' | grep -v '^master$' | xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
 
 
 Prune stale items:
 
-    git pruner = !git prune --expire=now; git reflog expire --expire-unreachable=now --rewrite --all
+    pruner = !git prune --expire=now; git reflog expire --expire-unreachable=now --rewrite --all
 
 Repack the way Linus recommends:
 
-    git repacker = !git repack -a -d -f --depth=300 --window=300 --window-memory=1g
+    repacker = !git repack -a -d -f --depth=300 --window=300 --window-memory=1g
 
 
 
