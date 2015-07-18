@@ -86,6 +86,9 @@
   # add by patch - looks at each change, and asks if we want to put it in the repo.
   ap = add --patch
 
+  # branch - edit the description
+  be = branch --edit-description
+
   # branch - list, create, or delete branches [same as "b"]
   br = branch
 
@@ -241,6 +244,9 @@
   # submodule with initialize, update, and recursive; this is useful to bring a submodule fully up to date.
   smu = submodule update --init --recursive
 
+  # status - short summary instead of full details
+  ss = status --short
+  
   # status - show the working tree differences [same as "s"]
   st = status
 
