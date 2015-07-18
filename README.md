@@ -23,8 +23,6 @@ If you prefer to customize which files to include, then you can choose specific 
        path = sixarm_git_gitconfig/gitconfig.d/alias-for-feature-flow.txt
        path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx.txt
 
-If you prefer to have full control of these files, then you can copy them wherever you like on your system, and edit them as you like. 
-
 If your system is OSX, and you want to enable the keychain credential manager, then add this:
 
     [include]
@@ -34,6 +32,8 @@ If your system is Windows, and you want to enable the system credential manager,
 
     [include]
        path = sixarm_git_gitconfig/gitconfig.d/specific-to-windows.txt
+
+If you want full control, then copy any of these files as edit as you like. 
 
 
 ## Alias shortcuts
