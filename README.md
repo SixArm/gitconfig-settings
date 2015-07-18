@@ -17,18 +17,18 @@ Clone:
 
     git clone https://github.com/SixArm/sixarm_git_gitconfig.git
 
-If you already have a `.gitconfig` file and you want to include all these files, then add this to your `.gitconfig` file:
+Create a `.gitconfig` file, or edit you existing file, and include this:
 
     [include]
        path = sixarm_git_gitconfig/gitconfg
 
-If you prefer to customize which files to include, you can choose specific files, for example:
+If you prefer to customize which files to include, then you can choose specific files, such as:
 
     [include]
        path = sixarm_git_gitconfig/gitconfig.d/alias-for-feature-flow.txt
        path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx.txt
 
-If you prefer to have full control of these files, you can copy them wherever you like on your system, and edit them as you like. 
+If you prefer to have full control of these files, then you can copy them wherever you like on your system, and edit them as you like. 
 
 
 ## Alias shortcuts
