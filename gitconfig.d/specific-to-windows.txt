@@ -3,4 +3,5 @@
 #
 # Requirements: Microsoft Windows, git >= 1.7.10.
 #
-git config --global credential.helper wincred
+[credential]
+	helper = wincred

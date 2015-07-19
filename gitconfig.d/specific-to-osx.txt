@@ -3,6 +3,7 @@
 #
 # Requirements: Apple OSX, git >= 1.7.10.
 #
-git config --global credential.helper osxkeychain
+[credential]
+	helper = osxkeychain
 
 
