@@ -41,7 +41,7 @@ Install for specific operating systems:
   1. If your system is OSX, and you want to enable the keychain credential manager, then add this:
 
         [include]
-           path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx
+           path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx.txt
 
   2. If your system is Windows, and you want to enable the system credential manager, then add this:
 
