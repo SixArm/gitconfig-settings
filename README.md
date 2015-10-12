@@ -15,7 +15,7 @@ Get these files:
 
 Create a `.gitconfig` file, or edit you existing file, such as:
 
-    edit .gitconfig
+    edit ~/.gitconfig
 
 Add these lines:
 
