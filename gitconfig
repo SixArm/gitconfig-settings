@@ -1,4 +1,5 @@
 [include]
+  path = gitconfig.d/alias.txt
   path = gitconfig.d/alias-for-cvs.txt
   path = gitconfig.d/alias-for-feature-flow.txt
   path = gitconfig.d/alias-for-gitk.txt
@@ -17,6 +18,5 @@
   path = gitconfig.d/user.txt
 
   # If your system is OSX or Windows, uncomment one of these:
-  # path = gitconfig.d/specific-to-osx.txt 
+  # path = gitconfig.d/specific-to-osx.txt
   # path = gitconfig.d/specific-to-windows.txt
- 

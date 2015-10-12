@@ -6,22 +6,37 @@ This has git aliases, branches, merges, syntax coloring, merges, credentials, an
 
 For the complete list of aliases, and all the configurations, please see the files in the `gitconfig.d` directory.
 
-## Install
+## Novice Install
 
-Clone:
+Get these files:
 
     git clone https://github.com/SixArm/sixarm_git_gitconfig.git
 
-Create a `.gitconfig` file, or edit you existing file, and include this:
+
+Create a `.gitconfig` file, or edit you existing file, such as:
+
+    edit .gitconfig
+
+Add these lines:
 
     [include]
        path = sixarm_git_gitconfig/gitconfg
 
-If you prefer to customize which files to include, then you can choose specific files, such as:
+
+## Expert Install
+
+If you want full control, then you can copy any of these files, as edit them as you like.
+
+If you want to include some files, but not others, then you can use this syntax:
 
     [include]
-       path = sixarm_git_gitconfig/gitconfig.d/alias-for-feature-flow.txt
-       path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx.txt
+       path = sixarm_git_gitconfig/gitconfig.d/alias.txt
+       path = sixarm_git_gitconfig/gitconfig.d/color.txt
+
+The `alias.txt` file has the bulk of the items - start with that file.
+
+
+## System Specific Install
 
 If your system is OSX, and you want to enable the keychain credential manager, then add this:
 
@@ -32,8 +47,6 @@ If your system is Windows, and you want to enable the system credential manager,
 
     [include]
        path = sixarm_git_gitconfig/gitconfig.d/specific-to-windows.txt
-
-If you want full control, then copy any of these files as edit as you like. 
 
 
 ## Alias shortcuts
@@ -118,7 +131,7 @@ Delete all branches that have been merged into master:
     master-cleanse = !"git checkout master && git branch --merged | xargs git branch -d; git branch -r --merged origin/master | sed 's/ *origin\///' | grep -v '^master$' | xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
 
 
-## Feature Flow 
+## Feature Flow
 
 Alias configuration for our feature flow. For details, see `gitconfig.d/alias-for-feature-flow.txt`.
 
