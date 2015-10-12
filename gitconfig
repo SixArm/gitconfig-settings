@@ -17,6 +17,7 @@
   path = gitconfig.d/rerere.txt
   path = gitconfig.d/user.txt
 
-  # If your system is OSX or Windows, uncomment one of these:
+  # You may uncomment one of these for your specific system:
+  # path = gitconfig.d/specific-to-linux.txt
   # path = gitconfig.d/specific-to-osx.txt
   # path = gitconfig.d/specific-to-windows.txt
