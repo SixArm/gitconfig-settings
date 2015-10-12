@@ -15,7 +15,7 @@ Install for novices:
 
         git clone https://github.com/SixArm/sixarm_git_gitconfig.git
 
-  2. Create a `.gitconfig` file, or edit you existing file, such as:
+  2. Create your own personal `.gitconfig` file, or edit your existing file, such as:
 
         edit ~/.gitconfig
 
