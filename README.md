@@ -6,47 +6,47 @@ This has git aliases, branches, merges, syntax coloring, merges, credentials, an
 
 For the complete list of aliases, and all the configurations, please see the files in the `gitconfig.d` directory.
 
-## Novice Install
 
-Get these files:
+## Install
 
-    git clone https://github.com/SixArm/sixarm_git_gitconfig.git
+Install for novices:
 
+  1. Get these files:
 
-Create a `.gitconfig` file, or edit you existing file, such as:
+      git clone https://github.com/SixArm/sixarm_git_gitconfig.git
 
-    edit ~/.gitconfig
+  2. Create a `.gitconfig` file, or edit you existing file, such as:
 
-Add these lines:
+      edit ~/.gitconfig
 
-    [include]
-       path = sixarm_git_gitconfig/gitconfg
+  3. Add these lines:
 
+      [include]
+         path = sixarm_git_gitconfig/gitconfg
 
-## Expert Install
+Install for experts:
 
-If you want full control, then you can copy any of these files, as edit them as you like.
+  1. If you want full control, then you can copy any of these files, as edit them as you like.
 
-If you want to include some files, but not others, then you can use this syntax:
+  2. The `alias.txt` file has the bulk of the items - start with that file.
 
-    [include]
-       path = sixarm_git_gitconfig/gitconfig.d/alias.txt
-       path = sixarm_git_gitconfig/gitconfig.d/color.txt
+  3. If you want to include some files, but not others, then you can use this syntax:
 
-The `alias.txt` file has the bulk of the items - start with that file.
+      [include]
+         path = sixarm_git_gitconfig/gitconfig.d/alias.txt
+         path = sixarm_git_gitconfig/gitconfig.d/color.txt
 
+Install for specific operating systems:
 
-## System Specific Install
+  1. If your system is OSX, and you want to enable the keychain credential manager, then add this:
 
-If your system is OSX, and you want to enable the keychain credential manager, then add this:
+      [include]
+         path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx
 
-    [include]
-       path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx
+  2. If your system is Windows, and you want to enable the system credential manager, then add this:
 
-If your system is Windows, and you want to enable the system credential manager, then add this:
-
-    [include]
-       path = sixarm_git_gitconfig/gitconfig.d/specific-to-windows.txt
+      [include]
+         path = sixarm_git_gitconfig/gitconfig.d/specific-to-windows.txt
 
 
 ## Alias shortcuts
