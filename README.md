@@ -26,7 +26,7 @@ Install for novices:
 
 Install for experts:
 
-  1. If you want full control, then you can copy any of these files, as edit them as you like.
+  1. If you want full control, then you can copy any of these files and edit them as you like.
 
   2. The `alias.txt` file has the bulk of the items - start with that file.
 
