@@ -13,16 +13,16 @@ Install for novices:
 
   1. Get these files:
 
-      git clone https://github.com/SixArm/sixarm_git_gitconfig.git
+        git clone https://github.com/SixArm/sixarm_git_gitconfig.git
 
   2. Create a `.gitconfig` file, or edit you existing file, such as:
 
-      edit ~/.gitconfig
+        edit ~/.gitconfig
 
   3. Add these lines:
 
-      [include]
-         path = sixarm_git_gitconfig/gitconfg
+        [include]
+           path = sixarm_git_gitconfig/gitconfg
 
 Install for experts:
 
@@ -32,21 +32,21 @@ Install for experts:
 
   3. If you want to include some files, but not others, then you can use this syntax:
 
-      [include]
-         path = sixarm_git_gitconfig/gitconfig.d/alias.txt
-         path = sixarm_git_gitconfig/gitconfig.d/color.txt
+        [include]
+           path = sixarm_git_gitconfig/gitconfig.d/alias.txt
+           path = sixarm_git_gitconfig/gitconfig.d/color.txt
 
 Install for specific operating systems:
 
   1. If your system is OSX, and you want to enable the keychain credential manager, then add this:
 
-      [include]
-         path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx
+        [include]
+           path = sixarm_git_gitconfig/gitconfig.d/specific-to-osx
 
   2. If your system is Windows, and you want to enable the system credential manager, then add this:
 
-      [include]
-         path = sixarm_git_gitconfig/gitconfig.d/specific-to-windows.txt
+        [include]
+           path = sixarm_git_gitconfig/gitconfig.d/specific-to-windows.txt
 
 
 ## Alias shortcuts
