@@ -4,7 +4,15 @@ Git configuration files.
 
 This has git aliases, branches, merges, syntax coloring, merges, credentials, and more.
 
-For the complete list of aliases, and all the configurations, please see the files in the `gitconfig.d` directory.
+Examples:
+
+    # Shorthand
+    s = status
+
+    # Find text in any commit ever
+    grep-all = !"git rev-list --all | xargs git grep '$1'"
+
+For the complete list, see the files in the `gitconfig.d` directory.
 
 
 ## Install
