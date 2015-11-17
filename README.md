@@ -30,7 +30,7 @@ Install for novices:
   3. Add these lines:
 
         [include]
-           path = sixarm_git_gitconfig/gitconfg
+           path = sixarm_git_gitconfig/gitconfig
 
 Install for experts:
 
