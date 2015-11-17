@@ -40,9 +40,6 @@
   # diff - show changes between commits, commit and working tree, etc.
   d = diff
 
-  # edit - pipe the diff output to your editor of choice.
-  e = !"git diff | $EDITOR"
-
   # fetch - download objects and refs from another repository.
   f = fetch
 
@@ -246,7 +243,7 @@
 
   # status - short summary instead of full details
   ss = status --short
-  
+
   # status - show the working tree differences [same as "s"]
   st = status
 
