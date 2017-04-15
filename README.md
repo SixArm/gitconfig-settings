@@ -6,12 +6,10 @@ This has git aliases, branches, merges, syntax coloring, merges, credentials, an
 
 Examples:
 
-    # Shorthand
-    s = status
-
-    # Find text in any commit ever
-    grep-all = !"git rev-list --all | xargs git grep '$1'"
-
+  * Nicknames such as `git s` doing `git status`
+  * Workflows such as `git rbi` doing a rebase, interactively, on unpushed commits.
+  * Helpers such as `git optimize` doing a prune and repack.
+  
 For the complete list, see the files in the `gitconfig.d` directory.
 
 
@@ -273,6 +271,8 @@ For more git config ideas, and for credit for many of the aliases here, please s
   * <http://mislav.uniqpath.com/2010/07/git-tips/>
   * <https://ochronus.com/git-tips-from-the-trenches/>
   * <http://mislav.uniqpath.com/2010/07/git-tips/>
+  * <https://blog.scottnonnenberg.com/better-git-configuration/>
+
 
 ## Thanks
 

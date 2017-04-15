@@ -1,3 +1,10 @@
 [merge]
+
+  # Default git diff shows two sets of changes: ours and theirs.
+  # Setting `conflictstyle` to diff3 (instead of diff2) means that
+  # we see the original text, then the two diffs (ours and theirs).
+  # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
   conflictstyle = diff3
+
+  # We like the `meld` tool that provides a GUI for merges.
   tool = meld-with-three-windows
