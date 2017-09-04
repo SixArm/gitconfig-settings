@@ -9,6 +9,7 @@
   path = gitconfig.d/branch.txt
   path = gitconfig.d/color.txt
   path = gitconfig.d/core.txt
+  path = gitconfig.d/credentials.txt  
   path = gitconfig.d/diff.txt
   path = gitconfig.d/github.txt
   path = gitconfig.d/merge.txt
