@@ -257,6 +257,273 @@ Read http://git.or.cz/gitwiki/InterfacesFrontendsAndTools
 Our favorite open source free GUI for Ubuntu is http://cola.tuxfamily.org/
 
 
+  
+
+## Stash
+
+A recent addition to git which defaults the -p flag to `git stash show`. This makes `git stash show` show the diff from that stash. In our opinion, this should be the default.
+
+  ~~~gitconfig
+  git config --global stash.showPatch true
+  ~~~
+
+
+## Autostash
+
+Automatically stash and unstash the working directory before and after rebases. This makes it possible to rebase with changes in the repo.
+
+  ~~~gitconfig
+  git config --global rebase.autostash true
+  ~~~
+
+
+## Decorate
+
+Always decorate `git log`.
+
+  ~~~gitconfig
+  git config --global log.decorate full
+  ~~~  
+  
+
+## Autosquash
+
+Setting autosquash enables it by default for all interactive rebases. When committing you can specify `--squash=<commit>` or `--fixup=<commit>`, then `git rebase -i --autosquash` will automatically move and mark the relevant commits in your rebase queue. 
+
+  ~~~gitconfig
+  rebase.autoSquash true
+  ~~~
+
+
+## User config
+
+We prefer to be explicit about user configuration, rather than to use the default user configuration, which looks for a local identity, then looks for a global user identity, then tries to guess a user identity based on your current user and machine.
+
+  ~~~gitconfig
+  user.useConfigOnly true
+  ~~~
+
+The `useConfigOnly` setting mandates an explicit configuration. Then we can remove any global git user and/or git email. Then git will require the correct configuration of any local repository before allowing commits.
+
+
+## Commit intent
+
+When performing a rebase (interactive or not) it can be difficult to remember what the original intent of a specific commit is when it's mixed with conflict markers. This shows the original commit being rebased.
+
+  ~~~gitconfig
+  alias.original "!git show $(cat .git/rebase-apply/original-commit)"
+  ~~~
+
+
+## Recursive git
+
+If you accidentally type `git git foo`, then correct it.
+
+  ~~~gitconfig
+  alias.git "!git"
+  ~~~
+
+## Merge tool
+
+    merge.tool <yourtool>
+
+Will automatically use the specified tool when invoking "git mergetool", if you like external utilities to perform merges or conflict resolution (
+
+Try these: emerge, kdiff3, araxis, vimdiff3, meld. The list of builtin tool support is accessible via "git mergetool --tool-help".
+
+
+## FF
+
+This has saved me:
+
+  ~~~gitconfig
+  git config  --global pull.ff only
+  ~~~
+
+I can always override an individual pull invocation with either "git pull --rebase" or "git pull --no-ff". This makes it a conscious choice when a fast-forward pull is not possible.
+
+If you set this config, and a fast-forward pull is not possible, here is what git does:
+
+  ~~~shell
+  $ git pull
+  fatal: Not possible to fast-forward, aborting.
+  ~~~
+
+
+## Signing vs. fast forward
+
+If the workflow rule is that merge commits to master are not permitted (ie. all commits must be rebased onto master first), then one person cannot rebase someone else's signed commits without losing those signatures. 
+
+Theoretically one could devise a tool which allows each contributor to re-sign (in the correct order), but I'm not aware that any such thing exists, and it'd probably be too impractical anyway.
+
+In a shared repository, I prefer creating "useless" merge commits to changing other peoples signatures.
+
+
+## diff-so-fancy  
+
+I really like diff-so-fancy [1] highlighter as a pager and to review diffs. Previously discussed here on HN here: [2]
+
+  * https://github.com/so-fancy/diff-so-fancy
+
+  * https://news.ycombinator.com/item?id=11057421
+
+
+## force with lease
+
+If we are stuck and we must push with force, then we use this:
+
+    git push --force-with-lease
+
+Instead of:
+
+    git push -f
+
+The advantage of the former over the latter is that it won't push if we haven't already seen the ref we're overwriting. It avoids the race condition of accidentally "push -f"ing over a commit we haven't seen.
+
+In our opinion, this should be the default.
+
+
+## Log format
+
+Log format with condensed view, graph, and tags:
+
+  ~~~gitalias
+  lg = log --pretty=format:\"%C(yellow)%h%C(reset) %C(green)%ad%C(reset) %C(red)|%C(reset) %s %C(bold blue)[%an]%C(reset)%C(yellow)%d%C(reset)\" --graph --date=short
+  ~~~
+
+Log forward that shows dates at the end, in a relative format (2 days ago, 29 hours ago, etc) and the tags/branches before the commit message:
+
+  ~~~gitalias
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cn%Creset %Cblue(%cr)%Creset' --abbrev-commit --date=relative
+  ~~~
+
+Another:
+
+  ~~~gitalias
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  ~~~
+
+
+## Yellow
+
+One thing I like to do is alter the coloring as an aide for `git status` which is giving "changed" a yellow as an intermediary color:
+
+  ~~~gitconfig
+  [color "status"]
+    untracked = red
+    changed = yellow
+    added = green
+  ~~~
+
+
+## Vim diff
+
+I'm a long time vim user and my brain is wired to reach for the keyboard shortcuts in vimdiff to jump from diff to diff. 
+
+Also, I really love diffing entire trees in one vim session using the DirDiff plugin (https://github.com/will133/vim-dirdiff).
+
+Here's how I wire it into my .gitconfig, which gets me the alias "git dirdiff":
+
+  ~~~gitconfig
+  [difftool "default-difftool"]
+    cmd = gvim -f '+next' '+execute \"DirDiff\" argv(0) argv(1)' $LOCAL $REMOTE
+
+  [difftool]
+    prompt = false
+
+  [alias]
+    dirdiff = difftool --dir-diff
+  ~~
+
+I like to use gvim to open new windows separate from my terminal, but if you prefer you can just use plain vim in there as well.
+
+Also, if using vim for viewing diffs, you might want to hack vim's config as well to make it look good. I like to (effectively) disable folding of lines with no diffs so I can still read the whole file- I use the shortcuts ]c (next diff) and [c (previous diff) to jump around diffs. I also like to disable editing in diff mode.
+
+Here's my diff-related .vimrc hackage:
+
+  ~~~vimrc
+  if &diff
+    set lines=60 columns=184
+    set foldminlines=99999
+    set nomodifiable
+    set nowrite
+  endif
+  ~~~
+reply
+  
+
+## tmux
+
+I have a dedicated Git tmux tab for every repo I'm working on, in that tab I use a git shell. Initiated by this bash function:
+
+  ~~~shell
+  # A nice shell prompt for inside git repostories
+  # Shows a short status of the repository in the prompt
+  # Adds an alias `g=git` and makes autocomplete work
+  gitprompt() {
+
+      __color_bold_blue='\[$(tput bold)\]\[$(tput setaf 4)\]'
+      __color_white='\[$(tput sgr0)\]'
+
+      export GIT_PS1_SHOWDIRTYSTATE=true;
+      export GIT_PS1_SHOWSTASHSTATE=true;
+      export GIT_PS1_SHOWUNTRACKEDFILES=true;
+      export GIT_PS1_SHOWUPSTREAM="auto";
+      export GIT_PS1_SHOWCOLORHINTS=true;
+      . /usr/lib/git-core/git-sh-prompt;
+
+      local ps1_start="$__color_bold_blue\w"
+      local ps1_end="$__color_bold_blue \\$ $__color_white"
+      local git_string=" (%s$__color_bold_blue)"
+
+      export PROMPT_COMMAND="__git_ps1 \"$ps1_start\" \"$ps1_end\" \"$git_string\""
+
+      # Short alias for git stuff
+      alias g=git
+
+      # Make autocomplete also work fo the `g` alias
+      eval $(complete -p git | sed 's/git$/g/g')
+
+  }
+  ~~~
+
+So I have this in my `.bashrc` and when I want my bash to get a handy Git prompt I type `gitprompt`.
+
+You do need the file `git-sh-prompt` which should come with git, for me it's located in `/usr/lib/git-core/git-sh-prompt`. It's also available here:
+
+* https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
+
+
+## fsckobjects
+  
+Don't set fsckobjects=true. There are normal repositories that have broken trees which will not download if you have it set. Yes it is irritating and I would rather turn it on, but I had to turn it off after several repos failed for me.
+
+The fsckObjects settings are entirely separate from the SHA. They are about syntactic and semantic rules in the objects themselves (e.g., well-formatted committer name/dates, tree filenames that don't contain "/", etc).
+
+Git doesn't check validity of commit hashes by default.
+
+
+## Merge/diff tools
+
+* The merge/diff tool I use is p4diff, which comes with P4V (Perforce visual client) and is free.
+
+
+## tig
+
+To explore the git log, I use tig. https://github.com/jonas/tig
+
+It is a curses interface to git. Screenshot: https://atlassianblog.wpengine.com/wp-content/uploads/tig-2....
+
+
+## GPG with keybase.io to sign commits
+
+Shameless plug. I published a little guide some months ago, on how to use GPG with keybase.io to sign commits.
+
+Link: https://github.com/pstadler/keybase-gpg-github
+
+Discussion on HN: https://news.ycombinator.com/item?id=12289481
+
+
 ## More
 
 For more git config ideas, and for credit for many of the aliases here, please see these excelent resources:
@@ -272,6 +539,7 @@ For more git config ideas, and for credit for many of the aliases here, please s
   * <https://ochronus.com/git-tips-from-the-trenches/>
   * <http://mislav.uniqpath.com/2010/07/git-tips/>
   * <https://blog.scottnonnenberg.com/better-git-configuration/>
+  * <https://news.ycombinator.com/item?id=14045787>
 
 
 ## Thanks
