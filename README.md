@@ -1,4 +1,4 @@
-﻿# Git » gitconfig files
+# SixArm.com → Git → gitconfig files
 
 Git configuration files.
 
