@@ -1,8 +1,6 @@
-# SixArm.com → Git → gitconfig files
+# gitconfig settings
 
-Git configuration files.
-
-This has git aliases, branches, merges, syntax coloring, merges, credentials, and more.
+Git configuration settings, files, aliases, branches, merges, syntax coloring, merges, credentials, and more.
 
 Examples:
 
